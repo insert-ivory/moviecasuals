@@ -1,0 +1,15 @@
+.navbar {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.custom-search-button {
+    background-color: #4b0082;
+    border-color: #ff5733;
+    color: white;
+}
+
+.custom-search-button:hover {
+    /*background-color: #e64a19;*/
+    border-color: #e64a19;
+}
