@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "moviecasuals.director.apps.DirectorConfig",
+    "moviecasuals.movie.apps.MovieConfig",
+    "moviecasuals.accounts.apps.AccountsConfig",
+    "moviecasuals.common.apps.CommonConfig"
 ]
 
 MIDDLEWARE = [
@@ -77,7 +81,7 @@ WSGI_APPLICATION = 'moviecasuals.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "mydatabase",
+        "NAME": "moviecasuals_db",
         "USER": "postgres-user",
         "PASSWORD": "password",
         "HOST": "127.0.0.1",
