@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def add_movie(request):
+    return render(request, 'movie/add_movie.html')

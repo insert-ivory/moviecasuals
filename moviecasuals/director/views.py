@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def add_director(request):
+    return render(request, 'director/add_director.html')
