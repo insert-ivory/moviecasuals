@@ -9,33 +9,43 @@
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
 <body>
-    {% include 'common/nav.html' %}    
+{% include 'common/nav.html' %}
 <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header text-center" style="background-color: #908d8c">
-                        <img src="{% static 'images/login.gif' %}" alt="LogIn" class="img-fluid mx-auto d-block" style="max-height: 80px; border-radius: 50px">
-                    </div>
-                    <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="email">Email address</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter email">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" placeholder="Password">
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block custom-button" >Login</button>
-                            <a href="" class="btn btn-outline-secondary btn-block mt-2">New User? Sign Up!</a>
-                        </form>
-                    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center" style="background-color: #011E2D">
+                    <img src="{% static 'images/login.gif' %}" alt="LogIn" class="img-fluid mx-auto d-block"
+                         style="max-height: 90px; border-radius: 70px">
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                        <div class="alert alert-danger">
+                            {% for message in messages %}
+                                <p>{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="email">Username</label>
+                            <input class="form-control" id="email" name="username" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password"
+                                   placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block custom-button">Login</button>
+                        <a href="{% url 'register' %}" class="btn btn-outline-secondary btn-block mt-2">Register</a>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    {% include 'common/footer.html' %}
+
+{% include 'common/footer.html' %}
 </body>
-</html>
