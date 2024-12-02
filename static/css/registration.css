@@ -1,0 +1,60 @@
+.card {
+    border-radius: 25px;
+
+}
+
+.card-header {
+     border-bottom: 2px solid white;
+}
+
+.card-body {
+    color: white;
+    background-color: #011E2D;
+    font-family: 'Arial', sans-serif;
+}
+
+/* register button */
+.custom-btn {
+    background-color: #01B0EE;
+    color: white;
+    border-radius: 30px;
+    padding: 10px 20px; /* Add padding for better size */
+    font-size: 16px;
+    font-weight: bold;
+    border:none;
+}
+
+/* Hover effect */
+.custom-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+    border:none;
+}
+
+/* Active effect when the button is clicked */
+.custom-btn:active {
+    background-color: #388e3c;
+    transform: scale(0.98); /* Shrink the button when clicked */
+}
+
+/* Focus effect to remove the outline */
+.custom-btn:focus {
+    outline: none;
+
+}
+
+/* Focus effect for form fields */
+input:focus, select:focus, textarea:focus {
+    border-color: #ADD8E6;
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 5px rgba(173, 216, 230, 0.8);
+}
+
+/* Additional style for the form fields */
+.form-group input, .form-group select, .form-group textarea {
+    border: 1px solid #ADD8E6; /* Default border color */
+    padding: 2px;
+    width: 100%; /* Ensure input takes full width */
+    border-radius: 5px; /* Optional: rounded corners */
+}
+
