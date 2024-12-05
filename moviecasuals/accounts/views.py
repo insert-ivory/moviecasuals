@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
@@ -33,6 +34,9 @@ class MovieUserLoginView(LoginView):
 
 class MovieUserLogoutView(LogoutView, LoginRequiredMixin):
     template_name = 'accounts/logout.html'
+
+def logout(request):
+    return render(request, 'accounts/logout.html')
 
 
 class MovieUserRegistrationView(CreateView):
