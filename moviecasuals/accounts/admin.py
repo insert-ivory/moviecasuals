@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from moviecasuals.accounts.models import MovieUserModel
+
+
+@admin.register(MovieUserModel)
+class MovieUserModelAdmin(admin.ModelAdmin):
+    pass
