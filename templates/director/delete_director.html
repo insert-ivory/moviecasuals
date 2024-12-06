@@ -18,8 +18,8 @@
                 
                 <form method="post">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger btn-delete-author">Confirm</button>
-                    <a href="{% url 'director-details' director.id %}" class="btn btn-secondary btn-delete-author-back">Back</a>
+                    <button type="submit" class="btn btn-danger btn-delete-director">Confirm</button>
+                    <a href="{% url 'director-details' director.id %}" class="btn btn-secondary btn-delete-director-back">Back</a>
                 </form>
             </div>
         </div>
