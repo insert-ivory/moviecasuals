@@ -8,10 +8,6 @@ def add_movie(request):
     return render(request, 'movie/add_movie.html')
 
 
-def movie_by_genre(request):
-    return render(request, 'movie/movies_by_genre.html')
-
-
 class MovieByGenreView(ListView):
     template_name = 'movie/movies_by_genre.html'
     context_object_name = 'movies'
