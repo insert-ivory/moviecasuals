@@ -1,0 +1,39 @@
+
+.delete-director-container {
+    width: 100%;
+    max-width: 600px; /* Adjust this value as necessary */
+    margin: auto;
+
+}
+
+.card {
+    color:white;
+    background-color: #011E2D;
+    width: 100%;
+}
+
+.btn-delete-author {
+    background-color: #dc3545;
+    border-radius: 25px;
+    color: white;
+    border:none;
+}
+
+.btn-delete-author:hover {
+    background-color: #45a049;
+}
+
+.btn-delete-author-back {
+    background-color: #FDFA89;
+    border-radius: 25px;
+    color: white;
+    border:none;
+}
+
+.btn-delete-author-back:hover {
+    background-color: #45a049;
+}
+
+.bold-director {
+    font-size: 1.1em;
+}

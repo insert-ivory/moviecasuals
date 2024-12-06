@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Author</title>
+    {% include 'common/layout.html' %}
+    <link rel="stylesheet" href="{% static 'css/delete_director.css' %}">
+</head>
+<body>
+{% include 'common/nav.html' %}
+    <div class="container mt-5 delete-director-container">
+        <div class="card">
+            <div class="card-body text-center">
+                <h4 class="card-title">Delete the director</h4>
+                <p class="card-text">Would you like to confirm the deletion of the director <strong class="bold-director">{{ director.get_full_name }}</strong>?</p>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-delete-author">Confirm</button>
+                    <a href="{% url 'director-details' director.id %}" class="btn btn-secondary btn-delete-author-back">Back</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% include 'common/footer.html' %}
+</body>
+</html>
