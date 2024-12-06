@@ -1,14 +1,28 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, UpdateView, DeleteView
+from django.views.generic import DetailView, UpdateView, DeleteView, CreateView
 
-from moviecasuals.director.forms import EditDirectorForm
+from moviecasuals.director.forms import EditDirectorForm, MovieUserCreateDirectorForm
 from moviecasuals.director.models import Director
 
 
 def add_director(request):
-    return render(request, 'director/add_director.html')
+    return render(request, 'director/create_director.html')
+
+class MovieUserCreateDirectorView(CreateView):
+    form_class = MovieUserCreateDirectorForm
+    template_name = 'director/create_director.html'
+    model = Director
+    success_url = reverse_lazy('homepage')
+
+    def form_valid(self, form):
+        if not form.is_valid():
+            print(form.errors)
+            return self.form_invalid(form)
+
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class DirectorDetails(DetailView):
@@ -33,3 +47,4 @@ class DeleteDirectorView(LoginRequiredMixin, DeleteView):
     model = Director
     pk_url_kwarg = 'director_id'
     success_url = reverse_lazy('homepage')
+
