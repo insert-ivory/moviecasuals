@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Account</title>
+    {% include 'common/layout.html' %}
+    <link rel="stylesheet" href="{% static 'css/delete_account.css' %}">
+</head>
+<body>
+{% include 'common/nav.html' %}
+    <div class="container mt-5 delete-account-container">
+        <div class="card">
+            <div class="card-body text-center">
+                <h4 class="card-title">Delete Your Account: <strong>{{ user.username }}</strong></h4>
+                <p class="card-text">Are you sure you want to delete your account <strong class="delete-permanently">permanently?</strong></p>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-delete-account">Yes, delete it!</button>
+                    <a href="{% url 'account-details' user.id %}" class="btn btn-secondary btn-back-account">No, go back.</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% include 'common/footer.html' %}
+</body>
+</html>

@@ -1,0 +1,61 @@
+.card .user-profile-pic img {
+    border-radius: 4.25rem !important;
+}
+
+.account-details-container{
+    margin-top: 15rem !important;
+    font-family: 'Arial', sans-serif;
+
+}
+
+.account-details-container {
+    max-width: 900px;
+    padding: 20px;
+}
+
+.card {
+    background-color: #011E2D;
+    color: white;
+
+}
+
+.user-profile-pic img {
+    border-radius: 4.25rem !important;
+    margin: 12px; /* margin to create space between the image and the container */
+}
+
+.edit-user-btn {
+    background-color: #01B0EE;
+    border:none;
+    border-radius: 25px;
+}
+
+.edit-user-btn:hover {
+    background-color: #45a049;
+    border:none;
+}
+
+
+.delete-user-btn {
+    background-color: red;
+    border:none;
+    border-radius: 25px;
+}
+
+.delete-user-btn:hover {
+    background-color: #45a049;
+    border-radius: 25px;
+}
+
+.back-user-btn {
+    background-color: #01B0EE;
+    border-radius: 25px;
+    border:none;
+}
+
+.back-user-btn:hover {
+    background-color: #45a049;
+    border-radius: 25px;
+}
+
+

@@ -1,0 +1,38 @@
+.btn-edit-profile-save {
+    background-color: #01B0EE;
+    border-radius: 25px;
+    color: white;
+    border:none;
+}
+
+.btn-edit-profile-save:hover {
+    background-color: #45a049;
+    border-radius: 25px;
+    color: white;
+    border:none;
+}
+
+.btn-cancel-edit-profile {
+    background-color: #FDFA89;
+    border-radius: 25px;
+    color: white;
+    border:none;
+}
+
+.btn-cancel-edit-profile:hover {
+    background-color: #45a049;
+    border-radius: 25px;
+    color: white;
+    border:none;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center; /* Centers the buttons horizontally */
+    gap: 10px; /* Adds a small gap between the buttons */
+    margin-top: 20px; /* Adds some space above the buttons */
+}
+
+.btn {
+    width: auto; /* Ensure the buttons do not stretch */
+}
