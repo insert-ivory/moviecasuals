@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Director</title>
+    {% include 'common/layout.html' %}
+    <link rel="stylesheet" href="{% static 'css/edit_director.css' %}">
+</head>
+<body>
+{% include 'common/nav.html' %}
+<div class="container mt-5">
+    <h2>Edit Director</h2>
+
+    <div class="card shadow-sm" style="background-color: #011E2D; color:white">
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="form-group mb-3">
+                    <label for="id_first_name">First Name</label>
+                    <input type="text" class="form-control" id="id_first_name" name="first_name" value="{{ form.first_name.value }}" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="id_last_name">Last Name</label>
+                    <input type="text" class="form-control" id="id_last_name" name="last_name" value="{{ form.last_name.value }}" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="id_date_of_birth">Date Of Birth</label>
+                    <input type="date" class="form-control" id="id_date_of_birth" name="date_of_birth" value="{{ form.date_of_birth.value|date:'Y-m-d' }}" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="id_bio">Biography</label>
+                    <textarea class="form-control" id="id_biography" name="biography" rows="4">{{ form.biography.value }}</textarea>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="id_picture_url">Picture's url</label>
+                    <input type="url" class="form-control" id="id_picture_url" name="picture_url" value="{{ form.picture_url.value }}">
+                </div>
+
+                <!-- Centering the buttons using a custom CSS class -->
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-success btn-edit-director">Save Changes</button>
+                    <a href="{% url 'director-details' director.id %}" class="btn btn-secondary ml-2 btn-cancel-edit-director">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% include 'common/footer.html' %}
+</body>
+</html>
