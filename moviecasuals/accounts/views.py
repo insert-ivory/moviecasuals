@@ -4,9 +4,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
-from moviecasuals.accounts.forms import LoginForm, MovieUserRegistrationForm
+from moviecasuals.accounts.forms import LoginForm, MovieUserRegistrationForm, MovieUserDetailsForm
+from moviecasuals.accounts.models import MovieUserModel
 
 
 class MovieUserLoginView(LoginView):
@@ -43,3 +44,29 @@ class MovieUserRegistrationView(CreateView):
     form_class = MovieUserRegistrationForm
     template_name = 'accounts/register.html'
     success_url = reverse_lazy('login')
+
+class MovieUserDetailsView(DetailView):
+    model = MovieUserModel
+    template_name = 'accounts/account_details.html'
+    pk_url_kwarg = 'id'
+    context_object_name = 'movie_user'
+
+
+class MovieUserEditAccountView(LoginRequiredMixin, UpdateView):
+    template_name = 'accounts/edit_account.html'
+    pk_url_kwarg = 'id'
+    model = MovieUserModel
+    form_class = MovieUserDetailsForm
+
+    def get_success_url(self):
+        movie_user_id = self.object.id
+        print(movie_user_id)
+        return reverse_lazy('account-details', kwargs={'id': movie_user_id})
+
+
+
+class MovieUserDeleteAccountView(DeleteView):
+    template_name = 'accounts/delete_account.html'
+    pk_url_kwarg = 'id'
+    model = MovieUserModel
+    success_url = reverse_lazy('homepage')
