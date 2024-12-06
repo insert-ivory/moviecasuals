@@ -6,7 +6,7 @@ from moviecasuals.director.models import Director
 class BaseDirectorForm(forms.ModelForm):
     class Meta:
         model = Director
-        exclude = ['user',]
+        exclude = ['user', 'approved',]
 
 class EditDirectorForm(BaseDirectorForm):
     pass
