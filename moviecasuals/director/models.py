@@ -1,6 +1,7 @@
 from django.db import models
 
 from moviecasuals.accounts.models import MovieUserModel
+from moviecasuals.director.validators import CapitalLetterValidator
 
 
 class Director(models.Model):
@@ -8,12 +9,14 @@ class Director(models.Model):
         max_length=50,
         null=False,
         blank=False,
+        validators=[CapitalLetterValidator()]
     )
 
     last_name = models.CharField(
         max_length=50,
         null=False,
         blank=False,
+        validators=[CapitalLetterValidator()]
     )
 
     date_of_birth = models.DateField(
