@@ -39,6 +39,7 @@
 .custom-button:hover {
     background-color: #45a049;
     outline: none;
+    border:none;
     box-shadow: none; /* Remove any shadow effect that might appear */
 }
 
