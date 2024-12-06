@@ -1,0 +1,57 @@
+
+.image-main {
+    background-color: #011E2D;
+    border-bottom: 2px solid white;
+}
+
+.container {
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 67px;
+}
+
+.director-info {
+    background-color: #E5EA98;
+    color: #011E2D;
+    border-bottom: 2px solid white;
+}
+
+.no-margin {
+    margin-top: 0 !important;
+}
+
+.director-bio {
+    background-color: #011E2D;
+    color: #FFFFFF;
+    border-bottom: 2px solid white;
+}
+
+.director-btns {
+    background-color: #E5EA98;
+    border-bottom: 2px solid white;
+}
+
+.btn-edit-back {
+    background-color: #01B0EE;
+    border-radius: 12px;
+    padding: 12px 20px;
+    border: none;
+    transition: background-color 0.3s ease;
+
+}
+
+.btn-edit-back:hover {
+    background-color: #45a049;
+}
+
+.btn-delete {
+    border-radius: 12px;
+    padding: 12px 20px;
+    margin: 15px 15px;
+    border:none;
+}
+
+.btn-delete:hover {
+    background-color: #45a049;
+    border: none;
+}
+

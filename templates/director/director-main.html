@@ -1,0 +1,93 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Director</title>
+    {% include 'common/layout.html' %}
+    <link rel="stylesheet" href="{% static 'css/director-main.css' %}">
+    <style>
+        /*  Add a transition for smooth expansion */
+        .bio-hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+{% include 'common/nav.html' %}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card mb-3 shadow-sm">
+
+                <!-- Image Section -->
+                <div class="d-flex align-items-center justify-content-center p-3 image-main">
+                    {% if director.picture_url %}
+                        <img src="{{ director.picture_url }}"
+                             class="img-fluid rounded border border-secondary shadow-sm"
+                             alt="Director's Picture" style="max-height: 200px; object-fit: cover;">
+                    {% else %}
+                        <img src="{% static 'images/defaul_director.png' %}"
+                             class="img-fluid rounded border border-secondary shadow-sm"
+                             alt="Default Director Image" style="max-height: 200px; object-fit: cover;">
+                    {% endif %}
+                </div>
+
+                <!-- Director Info Section (Name and Date of Birth) -->
+                <div class="d-flex justify-content-center flex-column align-items-center no-margin director-info">
+                    <h5 class="card-title">{{ director.get_full_name }}</h5>
+                    <p class="card-text"><strong>Date of Birth:</strong> {{ director.date_of_birth }}</p>
+                </div>
+
+                <!-- Director Biography Section -->
+                <div class="card-body director-bio">
+                    <p class="card-text">
+                        <strong>Biography:</strong>
+                        <span id="bio-content">
+                            {{ director.biography|truncatewords:50 }}
+                        </span>
+                        <span id="bio-hidden" class="bio-hidden">
+                            {{ director.biography }} <!-- Show more content -->
+                        </span>
+                    </p>
+                    <button id="toggle-btn" class="btn btn-link" onclick="toggleBio()">Show More</button>
+                </div>
+
+                <!-- Director Buttons Section -->
+                <div class="card-body director-btns d-flex justify-content-center">
+                    <div class="mt-0.5">
+                        {% if request.user == director.user %}
+                            <a href="{% url 'edit-director' director.id %}" class="btn btn-secondary btn-edit-back">Edit</a>
+                            <a href="{% url 'delete-director' director.id %}" class="btn btn-danger btn-delete">Delete</a>
+                        {% endif %}
+                        <a href="{% url 'homepage' %}" class="btn btn-secondary btn-edit-back">Back</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'common/footer.html' %}
+
+<script>
+    function toggleBio() {
+        var bioHidden = document.getElementById('bio-hidden');
+        var toggleBtn = document.getElementById('toggle-btn');
+
+        if (bioHidden.style.display === "none") {
+            bioHidden.style.display = "inline";
+            toggleBtn.textContent = "Show Less";
+        } else {
+            bioHidden.style.display = "none";
+            toggleBtn.textContent = "Show More";
+        }
+    }
+</script>
+
+</body>
+</html>
+
