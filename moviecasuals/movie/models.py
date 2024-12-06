@@ -4,6 +4,7 @@ from django.db.models import Avg
 
 from moviecasuals.accounts.models import MovieUserModel
 from moviecasuals.director.models import Director
+from moviecasuals.movie_choices import MovieChoices
 
 
 class Movie(models.Model):
@@ -39,6 +40,12 @@ class Movie(models.Model):
     )
     approved = models.BooleanField(
         default=False
+    )
+
+    genre_choices = models.CharField(
+        max_length=50,
+        choices=MovieChoices.choices,
+        default=MovieChoices.OTHERS,
     )
 
     def __str__(self):

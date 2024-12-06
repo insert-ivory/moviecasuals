@@ -35,6 +35,10 @@ class Director(models.Model):
         on_delete=models.CASCADE,
     )
 
+    approved = models.BooleanField(
+        default=False,
+    )
+
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
