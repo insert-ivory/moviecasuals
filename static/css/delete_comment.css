@@ -1,0 +1,32 @@
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.card-body {
+    background-color: #011E2D;
+    color: white;
+}
+
+.delete-btn-true{
+    background-color: #dc3545;
+    border-radius: 25px;
+    color: white;
+    border:none;
+}
+
+.delete-btn-true:hover{
+    background-color: #45a049;
+
+}
+
+.go-back-btn {
+    background-color: #FDFA89;
+    border-radius: 25px;
+    color: white;
+    border:none;
+}
+
+.go-back-btn:hover {
+    background-color: #45a049;
+}
