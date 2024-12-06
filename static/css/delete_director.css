@@ -12,25 +12,25 @@
     width: 100%;
 }
 
-.btn-delete-author {
+.btn-delete-director {
     background-color: #dc3545;
     border-radius: 25px;
     color: white;
     border:none;
 }
 
-.btn-delete-author:hover {
+.btn-delete-director:hover {
     background-color: #45a049;
 }
 
-.btn-delete-author-back {
+.btn-delete-director-back {
     background-color: #FDFA89;
     border-radius: 25px;
     color: white;
     border:none;
 }
 
-.btn-delete-author-back:hover {
+.btn-delete-director-back:hover {
     background-color: #45a049;
 }
 
