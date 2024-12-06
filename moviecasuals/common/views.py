@@ -54,3 +54,5 @@ class DeleteCommentView(DeleteView):
 
     def form_invalid(self, form):
         return self.form_valid(form)
+
+
