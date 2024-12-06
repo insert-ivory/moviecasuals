@@ -1,0 +1,40 @@
+.main-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Arial', sans-serif;
+}
+
+.card-header{
+    border-bottom: 2px solid white;
+}
+/* Style for Confirm button */
+.btn-danger {
+    background-color: #01B0EE;
+    color: white;
+    border-radius: 25px;
+    border:none;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #45a049;
+    border-color: #bd2130;
+}
+
+/* Style for Cancel button */
+.btn-secondary {
+    background-color: #FDFA89;
+    color: white;
+    border-radius: 25px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #45a049;
+    border:none;
+}

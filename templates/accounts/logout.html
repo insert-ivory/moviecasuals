@@ -10,17 +10,20 @@
 </head>
 <body>
     {% include 'common/nav.html' %}
-    <div class="container mt-5 d-flex justify-content-center">
-        <div class="card" style="width: 400px;">
-            <div class="card-header text-center" style="background-color: #908d8c;">
+    <div class="container mt-5 d-flex justify-content-center align-items-center main-container"  style="min-height: 80vh;">
+        <div class="card" style="width: 600px;">
+            <div class="card-header text-center" style="background-color: #011E2D;">
                 <img src="{% static 'images/logout.gif' %}" alt="LogIn" class="img-fluid mx-auto d-block"
-                     style="max-height: 80px; border-radius: 50px">
+                     style="max-height:100px; border-radius: 50px">
             </div>
-            <div class="card-body text-center">
-                <p>Are you sure you want to log out of your account?</p>
+            <div class="card-body text-center d-flex flex-column justify-content-center align-items-center" style="height: 200px; background-color: #011E2D">
+                <p>Are you certain you want to sign out of your account?</p>
                 <div class="d-flex justify-content-center">
-                    <a href="{% url 'logout' %}" class="btn btn-danger mr-2">Confirm</a>
-                    <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
+                     <form method="post" action="{% url 'logout' %}" style="margin-right: 10px;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger mr-2">Confirm</button>
+                    </form>
+                    <a href="{% url 'homepage' %}" class="btn btn-secondary">Cancel</a>
                 </div>
             </div>
         </div>
