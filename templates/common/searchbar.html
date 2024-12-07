@@ -1,10 +1,76 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Search Results</title>
+    {% include 'common/layout.html' %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+{% include 'common/nav.html' %}
 
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h2 class="display-4">These are the items we found based on your search.</h2>
+    </div>
+
+    {% if movies or directors %}
+        <div class="row justify-content-center">
+            <!-- Movies Results -->
+            {% if movies %}
+                <div class="col-lg-6 col-md-8 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-success text-white">
+                            <h4 class="mb-0 text-center">Movies</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                {% for movie in movies %}
+                                    <li class="list-group-item text-center">
+                                        <a href="{% url 'movie-details' movie.id %}" class="text-decoration-none text-blue">
+                                            <strong>{{ movie.title }}</strong>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Directors Results -->
+            {% if directors %}
+                <div class="col-lg-6 col-md-8 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-success text-white text-center">
+                            <h4 class="mb-0">Directors</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                {% for director in directors %}
+                                    <li class="list-group-item text-center">
+                                        <a href="{% url 'director-details' director.id %}" class="text-decoration-none text-blue">
+                                            <strong>{{ director.get_full_name }}</strong>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    {% else %}
+        <div class="alert alert-warning text-center" role="alert">
+            It looks like there’s nothing here that matches your search. Try modifying your filters.
+        </div>
+    {% endif %}
+</div>
+
+
+
+{% include 'common/footer.html' %}
 </body>
 </html>
