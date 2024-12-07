@@ -3,7 +3,7 @@ from django.contrib import messages
 
 
 class AccessControlMixin:
-    DENIED_MESSAGE = "Sorry, you are not authorized to view this content."
+    DENIED_MESSAGE = ""
 
     def get(self, request, *args, **kwargs):
         obj = self.get_object()
