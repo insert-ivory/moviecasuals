@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 
 from moviecasuals.movie.forms import CreateMovieForm
 from moviecasuals.movie.models import Movie
@@ -28,3 +28,10 @@ class MovieByGenreView(ListView):
     def get_queryset(self):
         genre_choices = self.kwargs['genre_choices']
         return Movie.objects.filter(genre_choices=genre_choices)
+
+
+class MovieDetailsView(DetailView):
+    template_name = 'movie/movie_details.html'
+    model = Movie
+    pk_url_kwarg = 'id'
+    context_object_name = 'movie'
