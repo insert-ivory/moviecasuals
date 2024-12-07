@@ -54,3 +54,10 @@
 .create-director-btn-create:hover {
     background-color: #45a049;;
 }
+
+.errorlist {
+    font-family: 'Roboto', sans-serif;
+    padding-left: 21px;
+    color:red;
+}
+
