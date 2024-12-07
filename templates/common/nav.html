@@ -1,3 +1,4 @@
+{% load get_unique_movie_genres %}
 {% load get_all_movies %}
 {% load static %}
 
@@ -27,17 +28,17 @@
                 </li>
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'add-movie' %}">Add a movie</a>
+                        <a class="nav-link" href="{% url 'create-movie' %}">Create a movie</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'add-director' %}">Create a director</a>
+                        <a class="nav-link" href="{% url 'create-director' %}">Create a director</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Add a movie</a>
+                        <a class="nav-link" href="{% url 'login' %}">Create a movie</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Add a director</a>
+                        <a class="nav-link" href="{% url 'login' %}">Create a director</a>
                     </li>
             
                 {% endif %}
@@ -47,10 +48,10 @@
                         Genres
                     </a>
                     <div class="dropdown-menu custom-dropdown" aria-labelledby="navbarDropdown">
-                        {% get_all_movies as movies %}
-                        {% for movie in movies %}
-                            {% if book.genre_choices != 'Other Genres' %}
-                        <a class="dropdown-item" href="{% url 'movies-by-genre' movie.genre_choices %}">{{ movie.genre }}</a>
+                        {% get_unique_movie_genres as genres %}
+                        {% for genre in genres %}
+                            {% if genre.genre_choices != 'Other Genres' %}
+                        <a class="dropdown-item" href="{% url 'movies-by-genre' genre.genre_choices %}">{{ genre.genre_choices }}</a>
                             {% endif %}
                         {% endfor %}
                         <div class="dropdown-divider"></div>
