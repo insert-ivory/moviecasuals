@@ -5,9 +5,11 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, UpdateView, DeleteView, TemplateView
 
+from moviecasuals.director.models import Director
 from moviecasuals.mixins import AccessControlMixin
 from moviecasuals.movie.forms import UpdateCommentForm, DeleteCommentForm
 from moviecasuals.movie.models import Movie, Comment
+from django.db.models import Q
 
 
 class HomePageView(ListView):
@@ -61,3 +63,22 @@ class AccessControlView(TemplateView):
     template_name = 'common/no_permission.html'
 
 
+class SearchBarView(ListView):
+    template_name = 'common/searchbar.html'
+    queryset = Movie.objects.none()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        query = self.request.GET.get('searched-word')
+        if query:
+            movies = Movie.objects.filter(Q(title__icontains=query)).distinct()
+            directors = Director.objects.filter(
+                Q(first_name__icontains=query) | Q(last_name__icontains=query)
+            ).distinct()
+            print(directors)
+            context['movies'] = movies
+            context['directors'] = directors
+        else:
+            context['movies'] = Movie.objects.none()
+            context['directors'] = Director.objects.none()
+        return context
