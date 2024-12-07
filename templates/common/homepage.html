@@ -29,10 +29,18 @@
                             <h5 class="movie-title"><strong>{{ movie.title }}</strong></h5>
                             <small><a href="{% url 'director-details' movie.director.id %}"
                                       class="text-primary-director-name text-decoration-underline"><strong class="director-full-name">{{ movie.director.get_full_name }}</strong></a></small>
-                            <p class="card-text mt-3 text-center">{{ movie.description|truncatechars:250 }}</p>
+                            
+                            <p class="card-text mt-3 text-center">
+                                <span id="desc-truncated">{{ movie.description|truncatechars:250 }}</span>
+                                <span id="desc-full" style="display: none;">{{ movie.description }}</span>
+                            </p>
+                            
                             {% if movie.description|length > 100 %}
-                                <a href="#" class="btn btn-read-more">Read More</a>
-                            {% endif %}    
+                                <button id="toggle-btn-{{ movie.id }}" class="btn btn-read-more" onclick="toggleDescription({{ movie.id }})">Read More</button>
+                                <span class="movie-details-tag ml-3">
+                                    <a href="#" class="btn btn-link">Movie Details</a>
+                                </span>
+                            {% endif %}
                         </div>
                     </div>
 
@@ -115,6 +123,25 @@
 </div>
 
 {% include 'common/footer.html' %}
+
+<script>
+    function toggleDescription(movieId) {
+        var truncatedDesc = document.getElementById('desc-truncated');
+        var fullDesc = document.getElementById('desc-full');
+        var toggleBtn = document.getElementById('toggle-btn-' + movieId);
+
+        if (fullDesc.style.display === "none") {
+            fullDesc.style.display = "inline";
+            truncatedDesc.style.display = "none";
+            toggleBtn.textContent = "Read Less";
+        } else {
+            fullDesc.style.display = "none";
+            truncatedDesc.style.display = "inline";
+            toggleBtn.textContent = "Read More";
+        }
+    }
+</script>
+
 </body>
 </html>
 
