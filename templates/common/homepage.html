@@ -39,7 +39,7 @@
                                 {% if movie.description|length > 100 %}
                                     <button id="toggle-btn-{{ movie.id }}" class="btn btn-read-more" onclick="toggleDescription({{ movie.id }})">Read More</button>
                                 {% endif %}
-                                
+
                                 <!-- Movie Details button always visible -->
                                 <span class="movie-details-tag">
                                     <a href="{% url 'movie-details' movie.id %}" class="btn btn-link">Movie Details</a>
