@@ -169,3 +169,30 @@ body {
 
     transition: color 0.3s ease;
 }
+
+
+.btn-read-more {
+    padding: 0.75rem;
+    background-color: #01B0EE;
+    border-radius: 25px;
+    color: white;
+    border:none;
+}
+
+.btn-read-more:hover {
+    background-color: #F8FD8A;
+}
+
+.movie-details-tag .btn-link {
+    padding: 0.75rem;
+    background-color: #01B0EE;
+    border-radius: 25px;
+    color: white;
+    border:none;
+}
+
+.movie-details-tag .btn-link:hover {
+    background-color: #45a049;
+    color: #fff;
+    text-decoration: none;
+}
