@@ -36,10 +36,12 @@
                             </p>
 
                             {% if movie.description|length > 100 %}
-                                <button id="toggle-btn-{{ movie.id }}" class="btn btn-read-more" onclick="toggleDescription({{ movie.id }})">Read More</button>
-                                <span class="movie-details-tag ml-3">
-                                    <a href="{% url 'movie-details' movie.id %}" class="btn btn-link">Movie Details</a>
-                                </span>
+                                <div class="button-container">
+                                    <button id="toggle-btn-{{ movie.id }}" class="btn btn-read-more" onclick="toggleDescription({{ movie.id }})">Read More</button>
+                                    <span class="movie-details-tag">
+                                        <a href="{% url 'movie-details' movie.id %}" class="btn btn-link">Movie Details</a>
+                                    </span>
+                                </div>
                             {% endif %}
                         </div>
                     </div>
@@ -142,6 +144,9 @@
     }
 </script>
 
+
+
 </body>
 </html>
+
 
