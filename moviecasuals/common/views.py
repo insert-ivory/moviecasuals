@@ -3,8 +3,9 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import ListView, UpdateView, DeleteView
+from django.views.generic import ListView, UpdateView, DeleteView, TemplateView
 
+from moviecasuals.mixins import AccessControlMixin
 from moviecasuals.movie.forms import UpdateCommentForm, DeleteCommentForm
 from moviecasuals.movie.models import Movie, Comment
 
@@ -17,7 +18,7 @@ class HomePageView(ListView):
 
 class AddCommentView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
-        movie_id = kwargs.get("movie_id")
+        movie_id = kwargs.get("pk")
         movie = get_object_or_404(Movie, id=movie_id)
         text = request.POST.get("text")
 
@@ -34,7 +35,7 @@ class AddCommentView(LoginRequiredMixin, View):
         return JsonResponse({'error': 'Invalid data'}, status=400)
 
 
-class EditCommentView(LoginRequiredMixin, UpdateView):
+class EditCommentView(LoginRequiredMixin, AccessControlMixin, UpdateView):
     template_name = 'movie/edit_comment.html'
     pk_url_kwarg = 'pk'
     model = Comment
@@ -42,7 +43,7 @@ class EditCommentView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('homepage')
 
 
-class DeleteCommentView(DeleteView):
+class DeleteCommentView(LoginRequiredMixin, AccessControlMixin, DeleteView):
     pk_url_kwarg = 'pk'
     template_name = 'movie/delete_comment.html'
     success_url = reverse_lazy('homepage')
@@ -54,5 +55,9 @@ class DeleteCommentView(DeleteView):
 
     def form_invalid(self, form):
         return self.form_valid(form)
+
+
+class AccessControlView(TemplateView):
+    template_name = 'common/no_permission.html'
 
 
