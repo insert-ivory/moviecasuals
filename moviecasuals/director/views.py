@@ -5,6 +5,7 @@ from django.views.generic import DetailView, UpdateView, DeleteView, CreateView
 
 from moviecasuals.director.forms import EditDirectorForm, MovieUserCreateDirectorForm
 from moviecasuals.director.models import Director
+from moviecasuals.mixins import AccessControlMixin
 
 
 def add_director(request):
@@ -31,7 +32,7 @@ class DirectorDetails(DetailView):
     pk_url_kwarg = 'director_id'
 
 
-class EditDirectorView(LoginRequiredMixin, UpdateView):
+class EditDirectorView(LoginRequiredMixin, AccessControlMixin, UpdateView):
     template_name = 'director/edit_director.html'
     pk_url_kwarg = 'director_id'
     model = Director
@@ -42,7 +43,7 @@ class EditDirectorView(LoginRequiredMixin, UpdateView):
         return reverse_lazy('director-details', kwargs={'director_id': director_id})
 
 
-class DeleteDirectorView(LoginRequiredMixin, DeleteView):
+class DeleteDirectorView(LoginRequiredMixin, AccessControlMixin, DeleteView):
     template_name = 'director/delete_director.html'
     model = Director
     pk_url_kwarg = 'director_id'
