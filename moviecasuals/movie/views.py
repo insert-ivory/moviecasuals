@@ -1,11 +1,24 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView
 
+from moviecasuals.movie.forms import CreateMovieForm
 from moviecasuals.movie.models import Movie
 
 
-def add_movie(request):
-    return render(request, 'movie/add_movie.html')
+class CreateMovieView(CreateView):
+    template_name = 'movie/create_movie.html'
+    model = Movie
+    form_class = CreateMovieForm
+    success_url = reverse_lazy('homepage')
+
+    def form_valid(self, form):
+        if not form.is_valid():
+            print(form.errors)
+            return self.form_invalid(form)
+
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class MovieByGenreView(ListView):
