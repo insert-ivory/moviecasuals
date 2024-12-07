@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add a Director</title>
+    {% include 'common/layout.html' %}
+    <link rel="stylesheet" href="{% static 'css/create_director.css' %}">
+</head>
+<body>
+{% include 'common/nav.html' %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-secondary text-white text-center">
+                    <h5>Create the new Director</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_div }}
+                    </form>
+                </div>
+
+                <div class="card-footer">
+                    <a href="{% url 'homepage' %}" class="btn btn-secondary btn-sm create-director-btn-back">Go Back</a>
+                    <button type="submit" class="btn btn-info px-4 create-director-btn-create">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'common/footer.html' %}
+</body>
+</html>
