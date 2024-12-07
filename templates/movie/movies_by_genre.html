@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Movies by Genre</title>
+    <title>Homepage</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -29,18 +29,22 @@
                             <h5 class="movie-title"><strong>{{ movie.title }}</strong></h5>
                             <small><a href="{% url 'director-details' movie.director.id %}"
                                       class="text-primary-director-name text-decoration-underline"><strong class="director-full-name">{{ movie.director.get_full_name }}</strong></a></small>
-                            
+
                             <p class="card-text mt-3 text-center">
                                 <span id="desc-truncated">{{ movie.description|truncatechars:250 }}</span>
                                 <span id="desc-full" style="display: none;">{{ movie.description }}</span>
                             </p>
-                            
-                            {% if movie.description|length > 100 %}
-                                <button id="toggle-btn-{{ movie.id }}" class="btn btn-read-more" onclick="toggleDescription({{ movie.id }})">Read More</button>
-                                <span class="movie-details-tag ml-3">
-                                    <a href="#" class="btn btn-link">Movie Details</a>
+
+                            <div class="button-container">
+                                {% if movie.description|length > 100 %}
+                                    <button id="toggle-btn-{{ movie.id }}" class="btn btn-read-more" onclick="toggleDescription({{ movie.id }})">Read More</button>
+                                {% endif %}
+                                
+                                <!-- Movie Details button always visible -->
+                                <span class="movie-details-tag">
+                                    <a href="{% url 'movie-details' movie.id %}" class="btn btn-link">Movie Details</a>
                                 </span>
-                            {% endif %}
+                            </div>
                         </div>
                     </div>
 
@@ -141,7 +145,6 @@
         }
     }
 </script>
-
 
 </body>
 </html>
