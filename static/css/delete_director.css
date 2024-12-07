@@ -1,8 +1,10 @@
 
 .delete-director-container {
+    border: 2px solid white;
     width: 100%;
     max-width: 600px; /* Adjust this value as necessary */
     margin: auto;
+
 
 }
 
@@ -10,6 +12,15 @@
     color:white;
     background-color: #011E2D;
     width: 100%;
+}
+
+.container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.mt-5 {
+    margin-top: 18rem !important;
 }
 
 .btn-delete-director {

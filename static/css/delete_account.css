@@ -1,13 +1,23 @@
 .delete-account-container {
+    border: 2px solid white;
     width: 100%;
     max-width: 600px; /* Adjust this value as necessary */
     margin: auto;
+}
+
+.container {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .card {
     color:white;
     background-color: #011E2D;
     width: 100%;
+}
+
+.mt-5 {
+    margin-top: 18rem !important;
 }
 
 .btn-delete-account {

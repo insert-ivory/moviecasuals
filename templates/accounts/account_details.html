@@ -18,9 +18,9 @@
                 <div class="row g-0">
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">{{ movie_user.first_name }} {{ movie_user.last_name }}</h5>
-                            <p class="card-text"><strong>Username:</strong> {{ movie_user.username }}</p>
-                            <p class="card-text"><strong>Email:</strong> {{ movie_user.email }}</p>
+                            <h5 class="card-title">First name: <strong>{{ movie_user.first_name }}</strong> Last name: <strong>{{ movie_user.last_name }}</strong></h5>
+                            <p class="card-text">Username: <strong>{{ movie_user.username }}</strong></p>
+                            <p class="card-text">Email: <strong>{{ movie_user.email }}</strong></p>
                             <div class="btn-group mt-3" role="group">
                                 <a href="{% url 'edit-account' movie_user.id %}" class="btn btn-secondary edit-user-btn">Edit</a>
                                 <a href="{% url 'delete-account' movie_user.id %}" class="btn btn-danger delete-user-btn">Delete</a>
