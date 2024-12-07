@@ -74,16 +74,21 @@
 {% include 'common/footer.html' %}
 
 <script>
-    function toggleBio() {
+     function toggleBio() {
+        var bioContent = document.getElementById('bio-content');
         var bioHidden = document.getElementById('bio-hidden');
         var toggleBtn = document.getElementById('toggle-btn');
 
         if (bioHidden.style.display === "none") {
+            // Show full biography content
             bioHidden.style.display = "inline";
-            toggleBtn.textContent = "Show Less";
+            bioContent.style.display = "none";  // Hide truncated version
+            toggleBtn.textContent = "Show Less"; // Change button text
         } else {
+            // Show truncated biography content
             bioHidden.style.display = "none";
-            toggleBtn.textContent = "Show More";
+            bioContent.style.display = "inline"; // Show truncated version
+            toggleBtn.textContent = "Show More"; // Change button text back
         }
     }
 </script>
