@@ -12,13 +12,13 @@
 
 .custom-search-button {
     background-color: #07B0F8;
-    border-color: #FAFC89;
+    border-radius: 25px;
     color: white;
+    border:none;
 }
 
 .custom-search-button:hover {
     background-color: green;
-    border-color: #e64a19;
 }
 
 .custom-dropdown {
@@ -37,4 +37,31 @@
 
 .custom-dropdown .dropdown-divider {
     border-top: 1px solid #FAFC89;
+}
+
+.custom-search-input {
+    border-radius: 20px; /* Smooth corners */
+    padding: 8px 12px; /* Adjust padding for better aesthetics */
+    transition: all 0.3s ease; /* Smooth transition for border color */
+        }
+
+.navbar-brand {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+ .form-inline {
+     margin-right: 0 !important; /* Remove right margin */
+     padding-right: 0 !important; /* Ensure no padding */
+ }
+
+ .search-navigation-container {
+     padding: 1px;
+ }
+
+ .login-message {
+    font-weight: bold;
+    font-size: 2rem; /* You can adjust the size */
+    color: rgba(255, 255, 255, 0.8); /* Set color */
+    margin-right: 5px; /* Add some space between the message and the username */
 }
