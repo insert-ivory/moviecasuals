@@ -17,7 +17,7 @@ class MovieUserCreateDirectorForm(BaseDirectorForm):
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Director's First Name. . ."}),
             'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Director's Last Name. . ."}),
-            'biography': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': "Director's Bio. . ."}),
+            'biography': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': "Director's Bio. . .\n ((Click the Generate button below for  Bio!))"}),
             'picture_url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Image url. . .'}),
             'date_of_birth': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'})
         }
