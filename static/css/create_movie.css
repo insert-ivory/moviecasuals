@@ -4,7 +4,8 @@
 }
 
 .mt-5 {
-    margin-top: 6rem !important;
+    margin-top: 3rem !important;
+    margin-bottom: 105px;
 }
 
 .card-header {
@@ -46,6 +47,7 @@
 
 .create-movie-btn {
     background-color: #01B0EE;
+    margin-right: 5px;
     border-radius: 25px;
     color: white;
     border:none;
@@ -64,4 +66,21 @@
     font-family: 'Roboto', sans-serif;
     padding-left: 21px;
     color:red;
+}
+
+.btn-generate-bio {
+    background-color: #01B0EE;
+    margin-right: 5px;
+    border-radius: 25px;
+    color: white;
+    border:none;
+}
+
+.btn-generate-bio:hover {
+    background-color: #45a049;;
+}
+
+.generate-bio {
+    margin-top: 0 !important;
+    margin-bottom: 0;
 }

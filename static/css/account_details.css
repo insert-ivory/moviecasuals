@@ -1,16 +1,18 @@
 .card .user-profile-pic img {
     border-radius: 4.25rem !important;
+    justify-content: center;
 }
 
 .account-details-container{
-    max-width: 1100px !important;
-    margin-top: 15rem !important;
+    max-width: 1300px !important;
+    margin-top: 6rem !important;
     font-family: 'Arial', sans-serif;
+    margin-bottom: 105px;
 
 }
 
 .account-details-container {
-    max-width: 900px;
+    max-width: 1300px;
     padding: 20px;
 }
 

@@ -1,10 +1,8 @@
-.container {
-    max-width: 1200px;
-    font-family: 'Arial', sans-serif;
-}
+
 
 .mt-5 {
     margin-top: 6rem !important;
+    margin-bottom: 105px;
 }
 
 .card-header {
@@ -46,6 +44,7 @@
 
 .create-director-btn-create {
     background-color: #01B0EE;
+    margin-right: 5px;
     border-radius: 25px;
     color: white;
     border:none;
@@ -61,3 +60,19 @@
     color:red;
 }
 
+.generate-bio {
+    margin-top: 0 !important;
+    margin-bottom: 0;
+}
+
+.btn-generate-bio {
+    background-color: #01B0EE;
+    margin-right: 5px;
+    border-radius: 25px;
+    color: white;
+    border:none;
+}
+
+.btn-generate-bio:hover {
+    background-color: #45a049;;
+}
