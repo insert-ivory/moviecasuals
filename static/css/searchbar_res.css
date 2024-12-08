@@ -1,4 +1,6 @@
-
+.container {
+    margin-bottom: 105px;
+}
 
 .search-result-text {
     font-size: 2rem;
