@@ -1,67 +1,7 @@
-.navbar {
-    font-family: 'Roboto', sans-serif;
-}
-
-.custom-navbar {
-    border-color: #FAFC89;
-    border-style: solid;
-    border-width: 1px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-
-.custom-search-button {
-    background-color: #07B0F8;
-    border-radius: 25px;
-    color: white;
-    border:none;
-}
-
-.custom-search-button:hover {
-    background-color: green;
-}
-
-.custom-dropdown {
-    background-color: #011E2D;
-    border: 1px solid #FAFFFE;
-}
-
-.custom-dropdown .dropdown-item {
-    color: #FAFFFE;
-}
-
-.custom-dropdown .dropdown-item:hover {
-    background-color: #e9ecef;
-    color: #343a40;
-}
-
-.custom-dropdown .dropdown-divider {
-    border-top: 1px solid #FAFC89;
-}
-
-.custom-search-input {
-    border-radius: 20px; /* Smooth corners */
-    padding: 8px 12px; /* Adjust padding for better aesthetics */
-    transition: all 0.3s ease; /* Smooth transition for border color */
+.custom-dropdown-item:hover {
+            background-color: #011E2D !important;
         }
 
-.navbar-brand {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-}
-
- .form-inline {
-     margin-right: 0 !important; /* Remove right margin */
-     padding-right: 0 !important; /* Ensure no padding */
- }
-
- .search-navigation-container {
-     padding: 1px;
- }
-
- .login-message {
-    font-weight: bold;
-    font-size: 2rem; /* You can adjust the size */
-    color: rgba(255, 255, 255, 0.8); /* Set color */
-    margin-right: 5px; /* Add some space between the message and the username */
+a.navbar-brand.fs-6.text-white strong.user-details-btn:hover {
+    color: #45a049;
 }

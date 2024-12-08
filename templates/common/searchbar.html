@@ -7,28 +7,29 @@
     <title>Search Results</title>
     {% include 'common/layout.html' %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/searchbar_res.css' %}">
 </head>
 <body>
 {% include 'common/nav.html' %}
 
 <div class="container mt-5">
-    <div class="text-center mb-4">
-        <h2 class="display-4">These are the items we found based on your search.</h2>
-    </div>
 
     {% if movies or directors %}
-        <div class="row justify-content-center">
+        <div class="text-center mb-4">
+            <h2 class="display-4 search-result-text">These are the items we found based on your search.</h2>
+        </div>
+        <div class="row justify-content-center main-container">
             <!-- Movies Results -->
             {% if movies %}
                 <div class="col-lg-6 col-md-8 mb-4">
                     <div class="card shadow-sm">
                         <div class="card-header bg-success text-white">
-                            <h4 class="mb-0 text-center">Movies</h4>
+                            <h4 class="mb-0 text-center" style="background-color: #011E2D">Movies</h4>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="background-color: #FDFA89;">
                             <ul class="list-group list-group-flush">
                                 {% for movie in movies %}
-                                    <li class="list-group-item text-center">
+                                    <li class="list-group-item text-center" style="background-color: #011E2D">
                                         <a href="{% url 'movie-details' movie.id %}" class="text-decoration-none text-blue">
                                             <strong>{{ movie.title }}</strong>
                                         </a>
@@ -47,10 +48,10 @@
                         <div class="card-header bg-success text-white text-center">
                             <h4 class="mb-0">Directors</h4>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="background-color: #FDFA89;">
                             <ul class="list-group list-group-flush">
                                 {% for director in directors %}
-                                    <li class="list-group-item text-center">
+                                    <li class="list-group-item text-center" style="background-color: #011E2D">
                                         <a href="{% url 'director-details' director.id %}" class="text-decoration-none text-blue">
                                             <strong>{{ director.get_full_name }}</strong>
                                         </a>
@@ -63,13 +64,16 @@
             {% endif %}
         </div>
     {% else %}
-        <div class="alert alert-warning text-center" role="alert">
+        <div class="alert alert-warning text-center" role="alert" style="background-color: #011E2D; border: 2px solid white; color:white;">
             It looks like there’s nothing here that matches your search. Try modifying your filters.
+        </div>
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-6 d-flex justify-content-center">
+                <img src="{% static 'images/no-search-res.png' %}" class="img-fluid rounded" alt="No-results" style="max-width: 100%; max-height: 400px; object-fit: cover; border:2px solid white;">
+            </div>
         </div>
     {% endif %}
 </div>
-
-
 
 {% include 'common/footer.html' %}
 </body>

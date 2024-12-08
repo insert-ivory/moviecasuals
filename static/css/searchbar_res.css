@@ -1,0 +1,12 @@
+
+
+.search-result-text {
+    font-size: 2rem;
+    color:white;
+    background-color: #011E2D;
+    border:2px solid white;
+}
+
+.bg-success {
+    background-color: #011E2D !important;
+}

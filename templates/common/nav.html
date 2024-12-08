@@ -1,5 +1,4 @@
 {% load get_unique_movie_genres %}
-{% load get_all_movies %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -10,90 +9,87 @@
     <title>MovieCasuals</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar" style="background-color: #011E2D; padding: 5px 10px;">
-        <div class="container-fluid d-flex justify-content-between align-items-center w-100 search-navigation-container">
-            <!-- Left side: Search Bar and Navigation Links -->
-            <div class="d-flex align-items-center w-50">
-                <!-- Search Bar -->
-                <form class="form-inline my-2 my-lg-0" action="{% url 'searchbar' %}" method="get">
-                    {% csrf_token %}
-                    <input class="form-control mr-sm-2 custom-search-input" type="search" placeholder="Search..." aria-label="Search" name="searched-word">
-                    <button class="btn btn-outline-dark my-2 my-sm-0 custom-search-button" type="submit">Search</button>
-                </form>
+    <nav class="navbar navbar-expand-xl navbar-dark" style="background-color: #011E2D; padding: 0 4px; border: 2px solid #FAFC89;">
+{#        {% if user.is_authenticated %}#}
+{#            <a class="navbar-brand fs-4 py-2" style="margin-left: 2px !important" href="#">MovieCasuals</a>#}
+{#        {% else %}#}
+{#            <a class="navbar-brand fs-4 py-2" href="{% url 'login' %}">MovieCasuals</a>#}
+{#        {% endif %}#}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="custom-toggler-icon">
+                <i class="fas fa-bars" style="color: white; font-size: 1.5rem;"></i>
+            </span>
+        </button>
 
-                <!-- Navigation Links -->
-                <ul class="navbar-nav ms-3">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'homepage' %}">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'create-movie' %}">Create a movie</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'create-director' %}">Create a director</a>
-                        </li>
-
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">Create a movie</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">Create a director</a>
-                        </li>
-                    {% endif %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
-                            Genres
-                        </a>
-                        <div class="dropdown-menu custom-dropdown" aria-labelledby="navbarDropdown">
-                            {% get_unique_movie_genres as genres %}
-                            {% for genre in genres %}
-                                {% if genre.genre_choices != 'Other Genres' %}
-                                    <a class="dropdown-item" href="{% url 'movies-by-genre' genre.genre_choices %}">{{ genre.genre_choices }}</a>
-                                {% endif %}
-                            {% endfor %}
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'movies-by-genre' 'Other Genres' %}">Other Genres</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Center: MovieCasuals Title -->
-            <a class="navbar-brand mx-auto" href="#">MovieCasuals</a>
-
-            <!-- Right-most side: User info -->
-            <ul class="navbar-nav ml-auto d-flex align-items-center w-25 justify-content-end">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-2px">
+                <li class="nav-item active">
+                    <a class="nav-link fs-5 py-2" href="{% url 'homepage' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
                 {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout-confirm' %}">Logout</a>
+                    <li class="nav-item active">
+                        <a class="nav-link fs-5 py-2" href="{% url 'create-movie' %}">Create a movie</a>
                     </li>
-                    <li class="nav-item">
-                        <strong class="login-message">Welcome:</strong> <a href="{% url 'account-details' user.id %}" class="navbar-brand navbar-user" style="color: rgba(255,255,255,.5);"> {{ user }}</a>
+                    <li class="nav-item active">
+                        <a class="nav-link fs-5 py-2" href="{% url 'create-director' %}">Create a director</a>
                     </li>
                 {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    <li class="nav-item active">
+                        <a class="nav-link fs-5 py-2" href="{% url 'login' %}">Create a movie</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{% url 'login' %}" class="navbar-brand fs-6 text-white"> {{ user }}</a>
+                    <li class="nav-item active">
+                        <a class="nav-link fs-5 py-2" href="{% url 'login' %}">Create a director</a>
                     </li>
                 {% endif %}
+                <li class="nav-item active dropdown">
+                    <a class="nav-link dropdown-toggle fs-5 py-2" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Genres
+                    </a>
+                    <div class="dropdown-menu fs-5 py-2" style="background-color: #011E2D; border: 2px solid white;" aria-labelledby="navbarDropdown">
+                        {% get_unique_movie_genres as genres %}
+                        {% for genre in genres %}
+                            {% if genre.genre_choices != 'Other Genres' %}
+                                <a class="dropdown-item custom-dropdown-item" style="color:white;" href="{% url 'movies-by-genre' genre.genre_choices %}">{{ genre.genre_choices }}</a>
+                            {% endif %}
+                        {% endfor %}
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item custom-dropdown-item" style="color:white;" href="{% url 'movies-by-genre' 'Other Genres' %}">Other Genres</a>
+                    </div>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item active">
+                        <a class="nav-link fs-5 py-6" href="{% url 'logout-confirm' %}">Logout</a>
+                    </li>
+                    <a href="{% url 'account-details' user.id %}" style="padding-top: 4px" class="navbar-brand fs-6 text-white"><strong class="user-details-btn">{{ user }}</strong></a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="navbar-brand fs-6 text-white">Log-in</a>
+                {% endif %}
             </ul>
+
+
+            <form class="form-inline my-2 my-lg-0" action="{% url 'searchbar' %}" method="get">
+                {% csrf_token %}
+                <input class="form-control mr-sm-2 custom-search-input" type="search" placeholder="Search" aria-label="Search" name="searched-word">
+                <button class="btn btn-outline-light my-2 my-sm-0 text-white btn-hover-dark" type="submit">Search</button>
+            </form>
+        
+        {% if user.is_authenticated %}
+            <a class="navbar-brand fs-4 py-2" style="margin-left: 4px !important" href="#">MovieCasuals</a>
+        {% else %}
+            <a class="navbar-brand fs-4 py-2" style="margin-left: 4px !important" href="{% url 'login' %}">MovieCasuals</a>
+        {% endif %}
+        
         </div>
     </nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-            integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
