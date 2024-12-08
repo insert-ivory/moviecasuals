@@ -23,8 +23,14 @@
                         {{ form.as_div }}
                         <div class="d-flex justify-content-center mt-3 create-director-container">
                             <button type="submit" class="btn btn-info px-4 create-movie-btn">Create</button>
+                            <form id="wikiForm" class="mt-4">
+                                <button type="submit" class="btn btn-primary btn-generate-bio">Generate</button>
+                            </form>
                         </div>
                     </form>
+                    <div class="container mt-5 text-center generate-bio">
+                        <p id="missing-content"><strong>Make sure to provide the movie title first! Some information from the description may be missing or incorrect if the title is not provided.</strong></p>
+                    </div>
                 </div>
 
                 <div class="card-footer text-center">

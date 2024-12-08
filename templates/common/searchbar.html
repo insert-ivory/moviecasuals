@@ -64,14 +64,15 @@
             {% endif %}
         </div>
     {% else %}
-        <div class="alert alert-warning text-center" role="alert" style="background-color: #011E2D; border: 2px solid white; color:white;">
+        <div class="alert alert-warning text-center" role="alert" style="background-color: #011E2D; border: 2px solid white; color:white; display: inline-block;">
             It looks like there’s nothing here that matches your search. Try modifying your filters.
-        </div>
         <div class="row justify-content-center mt-3">
             <div class="col-md-6 d-flex justify-content-center">
                 <img src="{% static 'images/no-search-res.png' %}" class="img-fluid rounded" alt="No-results" style="max-width: 100%; max-height: 400px; object-fit: cover; border:2px solid white;">
             </div>
         </div>
+        </div>
+        
     {% endif %}
 </div>
 

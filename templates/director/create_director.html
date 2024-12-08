@@ -25,6 +25,12 @@
                             <button type="submit" class="btn btn-info px-4 create-director-btn-create">Create</button>
                         </div>
                     </form>
+                    <div class="container mt-5 text-center generate-bio">
+                        <form id="wiki_api" class="mt-4">
+                                <button type="submit" class="btn btn-primary btn-generate-bio">Generate</button>
+                        </form>
+                        <p id="missing-content"><strong>Ensure that both the first and last name are entered. Be aware that some information in the biography may be incomplete if the full name is not provided or if the name is not written correctly!</strong></p>
+                    </div>
                 </div>
 
                 <div class="card-footer">
@@ -36,5 +42,6 @@
 </div>
 
 {% include 'common/footer.html' %}
+<script src="{% static 'js/directors_api.js' %}"></script>
 </body>
 </html>
