@@ -88,7 +88,7 @@
                                         </div>
 
                                         <div class="d-flex align-items-center">
-                                            {% if comment.user == user %}
+                                            {% if comment.user == user or user.is_superuser or user.is_staff %}
                                                 <small class="text-muted mr-2">{{ comment.created_at }}</small>
                                                 <div class="btn-group">
                                                     <a href="{% url 'edit_comment' comment.id %}"
@@ -108,7 +108,7 @@
                     </ul>
 
                     {% if user.is_authenticated %}
-                        <form method="post" action="{% url 'add_comment' movie.id %}">
+                        <form method="post" id="/add_comment/{{ movie.id }}" action="{% url 'add_comment' movie.id %}">
                             {% csrf_token %}
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -127,6 +127,7 @@
 </div>
 
 {% include 'common/footer.html' %}
+<script src="{% static 'js/async_comments.js' %}"></script>
 
 <script>
     function toggleDescription(movieId) {
