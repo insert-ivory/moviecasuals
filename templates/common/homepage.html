@@ -1,3 +1,4 @@
+{% load get_the_rating_range %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -62,14 +63,14 @@
 
                         <div class="col-md-6">
                             <div class="card-footer card-footer-rating">
-                                <h6>Rating: {{ movie.average_rating }}</h6>
-                                <div class="rating mb-3">
-                                    <i class="fas fa-star" style="cursor: pointer;"></i>
-                                    <i class="fas fa-star" style="cursor: pointer;"></i>
-                                    <i class="fas fa-star" style="cursor: pointer;"></i>
-                                    <i class="fas fa-star" style="cursor: pointer;"></i>
-                                    <i class="fas fa-star" style="cursor: pointer;"></i>
-                                </div>
+                                 <h6>Rating: <span id="average-rating{{ movie.id }}">{{ movie.average_rating|floatformat:2 }}</span></h6>
+                                {% if user.is_authenticated %}
+                                    <div class="rating mb-3" data-movie-id="{{ movie.id }}">
+                                        {% for i in 5|generate_range %}
+                                                <i class="fas fa-star rating-star" data-value="{{ i }}" style="cursor: pointer;" title="Give Rating {{ i }}"></i>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -128,6 +129,7 @@
 
 {% include 'common/footer.html' %}
 <script src="{% static 'js/async_comments.js' %}"></script>
+<script src="{% static 'js/async_ratings.js' %}"></script>
 
 <script>
     function toggleDescription(movieId) {
@@ -149,6 +151,3 @@
 
 </body>
 </html>
-
-
-
