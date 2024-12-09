@@ -20,12 +20,16 @@
                         <div class="card-body">
                             <h5 class="card-title">First name: <strong>{{ movie_user.first_name }}</strong> Last name: <strong>{{ movie_user.last_name }}</strong></h5>
                             <p class="card-text">Username: <strong>{{ movie_user.username }}</strong></p>
-                            <p class="card-text">Email: <strong>{{ movie_user.email }}</strong></p>
-                            <div class="btn-group mt-3" role="group">
-                                <a href="{% url 'edit-account' movie_user.id %}" class="btn btn-secondary edit-user-btn">Edit</a>
-                                <a href="{% url 'delete-account' movie_user.id %}" class="btn btn-danger delete-user-btn">Delete</a>
+                            {% if request.user == movie_user or request.user.is_superuser or request.user.is_staff %}
+                                <p class="card-text">Email: <strong>{{ movie_user.email }}</strong></p>
+                                <div class="btn-group mt-3" role="group">
+                                    <a href="{% url 'edit-account' movie_user.id %}" class="btn btn-secondary edit-user-btn">Edit</a>
+                                    <a href="{% url 'delete-account' movie_user.id %}" class="btn btn-danger delete-user-btn">Delete</a>
+                                    <a href="{% url 'homepage' %}" class="btn btn-dark back-user-btn">Back</a>
+                                </div>
+                            {% else %}
                                 <a href="{% url 'homepage' %}" class="btn btn-dark back-user-btn">Back</a>
-                            </div>
+                            {% endif %}
                         </div>
                     </div>
 
@@ -49,4 +53,3 @@
 {% include 'common/footer.html' %}
 </body>
 </html>
-

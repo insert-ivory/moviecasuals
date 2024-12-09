@@ -2,12 +2,13 @@ from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from moviecasuals.accounts.forms import LoginForm, MovieUserRegistrationForm, MovieUserDetailsForm
 from moviecasuals.accounts.models import MovieUserModel
+from moviecasuals.mixins import AccessControlMixin
 
 
 class MovieUserLoginView(LoginView):
@@ -52,11 +53,14 @@ class MovieUserDetailsView(DetailView):
     context_object_name = 'movie_user'
 
 
-class MovieUserEditAccountView(LoginRequiredMixin, UpdateView):
+class MovieUserEditAccountView(LoginRequiredMixin, AccessControlMixin ,UpdateView):
     template_name = 'accounts/edit_account.html'
     pk_url_kwarg = 'id'
     model = MovieUserModel
     form_class = MovieUserDetailsForm
+
+    def get_user_attribute(self):
+        return 'self'
 
     def get_success_url(self):
         movie_user_id = self.object.id
@@ -70,3 +74,20 @@ class MovieUserDeleteAccountView(DeleteView):
     pk_url_kwarg = 'id'
     model = MovieUserModel
     success_url = reverse_lazy('homepage')
+
+    def get_user_attribute(self):
+        return 'self'
+
+    def get(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if not (obj == request.user or request.user.is_superuser or request.user.is_staff):
+            messages.error(request, "You do not have permission to perform this action.")
+            return redirect('access-control')
+        return super().get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if not (obj == request.user or request.user.is_superuser or request.user.is_staff):
+            messages.error(request, "You do not have permission to perform this action.")
+            return redirect('access-control')
+        return super().post(request, *args, **kwargs)
