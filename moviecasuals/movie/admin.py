@@ -1,3 +1,15 @@
 from django.contrib import admin
 
-# Register your models here.
+from moviecasuals.movie.models import Movie, MovieUserChoice
+
+
+
+@admin.register(Movie)
+class MovieAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(MovieUserChoice)
+class MovieAdmin(admin.ModelAdmin):
+    pass
+
