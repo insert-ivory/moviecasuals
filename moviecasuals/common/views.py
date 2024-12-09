@@ -8,8 +8,8 @@ from django.views.generic import ListView, UpdateView, DeleteView, TemplateView
 from moviecasuals.director.models import Director
 from moviecasuals.mixins import AccessControlMixin
 from moviecasuals.movie.forms import UpdateCommentForm, DeleteCommentForm
-from moviecasuals.movie.models import Movie, Comment
-from django.db.models import Q
+from moviecasuals.movie.models import Movie, Comment, Rating
+from django.db.models import Q, Avg
 
 
 class HomePageView(ListView):
@@ -82,3 +82,31 @@ class SearchBarView(ListView):
             context['movies'] = Movie.objects.none()
             context['directors'] = Director.objects.none()
         return context
+
+
+class GiveRatingView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        movie_id = kwargs.get("movie_id")
+        selected_rating = request.POST.get("rating")
+
+        if not selected_rating or not selected_rating.isdigit() or not (1 <= int(selected_rating) <= 5):
+            return JsonResponse({'error': 'Invalid rating value'}, status=400)
+
+        movie = get_object_or_404(Movie, id=movie_id)
+
+        rating, created = Rating.objects.update_or_create(
+            movie=movie,
+            user=request.user,
+            defaults={'rating': int(selected_rating)}
+        )
+
+        new_average_rating = movie.ratings.aggregate(Avg('rating'))['rating__avg'] or 0
+
+        user_rating = movie.ratings.filter(user=request.user).first().rating if movie.ratings.filter(
+            user=request.user).exists() else None
+
+        return JsonResponse({
+            'message': 'Rating added successfully',
+            'new_average_rating': round(new_average_rating, 2),
+            'user_rating': user_rating
+        })
