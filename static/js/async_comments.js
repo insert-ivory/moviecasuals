@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     day: 'numeric',
                     hour: 'numeric',
                     minute: 'numeric',
-                    second: 'numeric',
                     hour12: true,
                 });
 
@@ -60,3 +59,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
