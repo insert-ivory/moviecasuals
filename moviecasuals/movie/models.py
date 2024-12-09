@@ -4,7 +4,7 @@ from django.db.models import Avg
 
 from moviecasuals.accounts.models import MovieUserModel
 from moviecasuals.director.models import Director
-from moviecasuals.movie_choices import MovieChoices
+from moviecasuals.movie_choices import MovieChoices, MovieUserOptions
 
 
 class Movie(models.Model):
@@ -13,6 +13,7 @@ class Movie(models.Model):
         blank=False,
         null=False,
         on_delete=models.CASCADE,
+        related_name='movies',
     )
 
     director = models.ForeignKey(
@@ -93,5 +94,19 @@ class Rating(models.Model):
 
     class Meta:
         unique_together = ('movie', 'user')
+
+
+
+class MovieUserChoice(models.Model):
+    user = models.ForeignKey(to=MovieUserModel, on_delete=models.CASCADE, related_name="movie_options")
+    movie = models.ForeignKey(to=Movie, on_delete=models.CASCADE, related_name="user_options")
+    options = models.CharField(
+        max_length=50,
+        choices=MovieUserOptions.choices,
+        default=MovieUserOptions.UNSPECIFIED
+    )
+
+    class Meta:
+        unique_together = ('user', 'movie')
 
 
