@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,15 +24,14 @@
                             <button type="submit" class="btn btn-info px-4 create-director-btn-create">Create</button>
                         </div>
                     </form>
-                     <form id="wiki_api" class="mt-4">
+                    <form id="wiki_api" class="mt-4 d-flex justify-content-center">
                          <button type="submit" class="btn btn-primary btn-generate-bio">Generate</button>
-                     </form>
+                    </form>
                     <div class="container mt-5 text-center generate-bio">
                         <p id="missing-content"><strong>Ensure that both the first and last name are entered. Be aware that some information in the biography may be incomplete if the full name is not provided or if the name is not written correctly!</strong></p>
                     </div>
                 </div>
-
-                <div class="card-footer">
+                <div class="card-footer text-center">
                     <a href="{% url 'homepage' %}" class="btn btn-secondary btn-sm create-director-btn-back">Go Back</a>
                 </div>
             </div>
@@ -45,3 +43,5 @@
 <script src="{% static 'js/directors_api.js' %}"></script>
 </body>
 </html>
+
+

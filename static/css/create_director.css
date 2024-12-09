@@ -1,7 +1,7 @@
 
 
 .mt-5 {
-    margin-top: 6rem !important;
+    margin-top: 2rem !important;
     margin-bottom: 105px;
 }
 
@@ -9,6 +9,8 @@
     padding: 1.25rem;
 
 }
+
+
 
 .bg-secondary {
     background-color: #F8FD8A !important;
@@ -35,7 +37,8 @@
     background-color: #01B0EE;
     border-radius: 25px;
     color: white;
-    border:none;
+    border: none;
+    display: inline-block;
 }
 
 .create-director-btn-back:hover {
@@ -61,13 +64,14 @@
 }
 
 .generate-bio {
-    margin-top: 0 !important;
+    margin-top: 6px !important;
     margin-bottom: 0;
 }
 
 .btn-generate-bio {
     background-color: #01B0EE;
     margin-right: 5px;
+    margin-bottom: 10px;
     border-radius: 25px;
     color: white;
     border:none;

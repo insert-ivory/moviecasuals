@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create a movie</title>
+    <title>Create a Movie</title>
     {% include 'common/layout.html' %}
     <link rel="stylesheet" href="{% static 'css/create_movie.css' %}">
 </head>
@@ -25,7 +25,7 @@
                             <button type="submit" class="btn btn-info px-4 create-movie-btn">Create</button>
                         </div>
                     </form>
-                    <form id="wiki_api" class="mt-4">
+                    <form id="wiki_api" class="mt-4 d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary btn-generate-bio">Generate</button>
                     </form>
                     <div class="container mt-5 text-center generate-bio">
@@ -40,8 +40,6 @@
         </div>
     </div>
 </div>
-
-
 
 {% include 'common/footer.html' %}
 <script src="{% static 'js/movies_api.js' %}"></script>
