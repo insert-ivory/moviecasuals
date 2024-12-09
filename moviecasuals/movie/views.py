@@ -1,9 +1,13 @@
-from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import ListView, CreateView, DetailView
 
+from moviecasuals.accounts.models import MovieUserModel
 from moviecasuals.movie.forms import CreateMovieForm
-from moviecasuals.movie.models import Movie
+from moviecasuals.movie.models import Movie, MovieUserChoice
+from moviecasuals.movie_choices import MovieUserOptions
 
 
 class CreateMovieView(CreateView):
@@ -35,3 +39,49 @@ class MovieDetailsView(DetailView):
     model = Movie
     pk_url_kwarg = 'id'
     context_object_name = 'movie'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        movie = self.get_object()
+
+        current_option = None
+        if self.request.user.is_authenticated:
+            user_option = MovieUserChoice.objects.filter(user=self.request.user, movie=movie).first()
+            current_option = user_option.options if user_option else None
+
+        context['status_options'] = MovieUserOptions.choices
+        context['current_option'] = current_option
+
+        return context
+
+
+class UpdateMovieOptionView(LoginRequiredMixin, View):
+
+    def post(self, request, *args, **kwargs):
+        movie = get_object_or_404(Movie, id=kwargs.get('id'))
+        option = request.POST.get('option')
+
+        if request.user.is_authenticated:
+            user_option, created = MovieUserChoice.objects.get_or_create(user=request.user, movie=movie)
+            user_option.options = option
+            user_option.save()
+
+        return redirect('homepage')
+
+
+class YourMovieListView(LoginRequiredMixin, DetailView):
+    model = MovieUserModel
+    pk_url_kwarg = 'id'
+    template_name = 'movie/your_movie_options.html'
+    context_object_name = 'user'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        user = self.request.user
+
+        context['status_options'] = MovieUserOptions.choices
+
+        return context
+
