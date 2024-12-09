@@ -1,7 +1,7 @@
 from django.urls import path, include
 
 from moviecasuals.common.views import HomePageView, AddCommentView, EditCommentView, DeleteCommentView, \
-    AccessControlView, SearchBarView
+    AccessControlView, SearchBarView, GiveRatingView
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='homepage'),
@@ -16,4 +16,5 @@ urlpatterns = [
     #     path('delete_comment/', DeleteCommentView.as_view(), name='delete_comment'),
     path('access-control/', AccessControlView.as_view(), name='access-control'),
     path('searchbar/', SearchBarView.as_view(), name='searchbar'),
+    path('rate_movie/<int:movie_id>/', GiveRatingView.as_view(), name='rate_movie'),
 ]
