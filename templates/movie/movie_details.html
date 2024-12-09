@@ -13,11 +13,40 @@
 {% include 'common/nav.html' %}
 
 <div class="container mt-5">
+    <!-- user authentication check and form  -->
+    {% if user.is_authenticated %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title text-center">Choose a Different Option for <strong>{{ movie.title }}</strong></h5>
+                <form id="update-option-form" method="POST" action="{% url 'movie-option' movie.id %}" class="d-flex flex-column align-items-center">
+                    {% csrf_token %}
+                    <div class="text-center form-group w-100 mb-3">
+                        <button type="submit" class="btn btn-secondary w-20 save-option-btn">Save Option</button>
+                        <label for="optionSelect" class="form-label">Browse and Choose options:</label>
+                        <select id="optionSelect" name="option" class="form-select">
+                            {% for option_pick, option_description in status_options %}
+                                <option value="{{ option_pick }}"
+                                        {% if current_option == option_pick %}selected{% endif %}>
+                                    {{ option_description }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        {% if request.user == movie.user %}
+                            <a href="#" class="btn btn-secondary btn-edit-movie">Edit</a>
+                            <a href="#" class="btn btn-danger btn-delete-movie">Delete</a>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- Movie Details Section Below the Form -->
     <div class="card mb-4">
         <div class="card-body">
             <div class="row">
                 <div class="col-md-8 d-flex flex-column align-items-center justify-content-center order-md-1">
-                    <h5>{{ movie.title }}</h5>
+                    <h5><strong>{{ movie.title }}</strong></h5>
                     <a href="{% url 'director-details' movie.director.id %}"
                               class="text-primary text-decoration-underline">{{ movie.director.get_full_name }}</a>
                     <p class="card-text mt-3 text-center">{{ movie.description }}</p>
@@ -29,6 +58,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 {% include 'common/footer.html' %}

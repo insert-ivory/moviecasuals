@@ -1,5 +1,5 @@
 .mt-5 {
-    margin-top: 12rem !important;
+    margin-top: 2rem !important;
     margin-bottom: 105px;
 }
 
@@ -24,4 +24,42 @@
 .text-primary:hover {
     color: white !important;
 
+}
+
+.save-option-btn {
+    background-color: #01B0EE;
+     color: white;
+     border-radius: 25px;
+     border:none;
+}
+
+.save-option-btn:hover {
+    background-color: #45a049;
+}
+
+.btn-edit-movie {
+     background-color: #01B0EE;
+     color: white;
+     border-radius: 25px;
+     border:none;
+ }
+
+.btn-edit-movie:hover {
+     background-color: #45a049;
+ }
+
+.btn-delete-movie {
+    background-color: #dc3545;
+    border-radius: 25px;
+    color: white;
+    border:none;
+}
+
+.btn-delete-movie:hover {
+    background-color: #45a049;
+}
+
+.form-select {
+    color:white;
+    background-color: #011E2D;
 }
