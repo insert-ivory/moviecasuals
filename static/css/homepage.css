@@ -131,6 +131,8 @@ body {
 
 
 .btn-comment {
+    background-color: #01B0EE;
+    border:none;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
 
