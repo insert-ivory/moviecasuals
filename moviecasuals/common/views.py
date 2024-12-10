@@ -17,6 +17,16 @@ class HomePageView(ListView):
     model = Movie
     context_object_name = 'movies'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            user_ratings = Rating.objects.filter(user=self.request.user)
+            user_ratings_dict = {rating.movie.id: rating.rating for rating in user_ratings}
+            context['user_ratings'] = user_ratings_dict
+        else:
+            context['user_ratings'] = {}
+        return context
+
 
 class AddCommentView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):

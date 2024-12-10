@@ -9,15 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const userRating = parseInt(rating.getAttribute('data-user-rating'), 10);
 
         // Highlight stars based on the user's rating
-        stars.forEach(star => {
-            const starValue = parseInt(star.getAttribute('data-value'), 10);
-
-            if (userRating >= starValue) {
-                star.classList.add('text-warning');  // Highlight the star
-            } else {
-                star.classList.add('text-muted');   // Make the star gray
-            }
-        });
+        updateStars(stars, userRating);
 
         // Set up the click event for new ratings
         stars.forEach(star => {
@@ -46,10 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     // Update stars based on the new rating
-                    stars.forEach(s => {
-                        s.classList.toggle('text-warning', s.getAttribute('data-value') <= ratingValue);
-                        s.classList.toggle('text-muted', s.getAttribute('data-value') > ratingValue);
-                    });
+                    updateStars(stars, ratingValue);
+
+                    // Update the data-user-rating attribute
+                    rating.setAttribute('data-user-rating', ratingValue);
                 })
                 .catch(error => {
                     console.error('Network Error:', error);
@@ -58,4 +50,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+    function updateStars(stars, ratingValue) {
+        stars.forEach(star => {
+            const starValue = parseInt(star.getAttribute('data-value'), 10);
+            if (ratingValue >= starValue) {
+                star.classList.remove('text-muted');
+            } else {
+                star.classList.remove('text-warning');
+                star.classList.add('text-muted');   // Make the star gray
+            }
+        });
+    }
 });

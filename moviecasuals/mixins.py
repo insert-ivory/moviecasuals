@@ -3,7 +3,7 @@ from django.contrib import messages
 
 
 class AccessControlMixin:
-    DENIED_MESSAGE = "You do not have permission to perform this action."
+    DENIED_MESSAGE = ""
 
     def get_user_attribute(self):
         # Default to 'user', but allow subclasses to specify their own user attribute

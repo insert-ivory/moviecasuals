@@ -1,3 +1,4 @@
+{% load get_dict_value %}
 {% load get_the_rating_range %}
 {% load static %}
 
@@ -65,9 +66,9 @@
                             <div class="card-footer card-footer-rating">
                                  <h6>Rating: <span id="average-rating{{ movie.id }}">{{ movie.average_rating|floatformat:2 }}</span></h6>
                                 {% if user.is_authenticated %}
-                                    <div class="rating mb-3" data-movie-id="{{ movie.id }}">
+                                    <div class="rating mb-3" data-movie-id="{{ movie.id }}"  data-user-rating="{{ user_ratings|get_dict_value:movie.id }}">
                                         {% for i in 5|generate_range %}
-                                                <i class="fas fa-star rating-star" data-value="{{ i }}" style="cursor: pointer;" title="Give Rating {{ i }}"></i>
+                                                <i class="fas fa-star rating-star text-muted" data-value="{{ i }}" style="cursor: pointer;" title="Give Rating {{ i }}"></i>
                                         {% endfor %}
                                     </div>
                                 {% endif %}
