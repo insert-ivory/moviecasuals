@@ -1,0 +1,27 @@
+.mt-5 {
+    margin-top: 18rem !important;
+}
+
+
+
+.delete-movie-btn {
+    background-color: #dc3545;
+    border-radius: 25px;
+    color: white;
+    border:none;
+}
+
+.delete-movie-btn:hover {
+    background-color: #45a049;
+}
+
+.back-delete-movie-btn {
+    background-color: #FDFA89;
+    border-radius: 25px;
+    color: white;
+    border:none;
+}
+
+.back-delete-movie-btn:hover {
+    background-color: #45a049;
+}

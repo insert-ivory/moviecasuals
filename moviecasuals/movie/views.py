@@ -2,10 +2,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import ListView, CreateView, DetailView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
 from moviecasuals.accounts.models import MovieUserModel
-from moviecasuals.movie.forms import CreateMovieForm
+from moviecasuals.mixins import AccessControlMixin
+from moviecasuals.movie.forms import CreateMovieForm, EditMovieForm
 from moviecasuals.movie.models import Movie, MovieUserChoice
 from moviecasuals.movie_choices import MovieUserOptions
 
@@ -85,3 +86,19 @@ class YourMovieListView(LoginRequiredMixin, DetailView):
 
         return context
 
+
+class EditMovieView(LoginRequiredMixin, AccessControlMixin, UpdateView):
+    template_name = 'movie/edit_movie.html'
+    pk_url_kwarg = 'id'
+    model = Movie
+    form_class = EditMovieForm
+
+    def get_success_url(self):
+        return reverse_lazy('movie-details', kwargs={'id': self.object.id})
+
+
+class DeleteMovieView(LoginRequiredMixin, AccessControlMixin, DeleteView):
+    template_name = 'movie/delete_movie.html'
+    model = Movie
+    pk_url_kwarg = 'id'
+    success_url = reverse_lazy('homepage')

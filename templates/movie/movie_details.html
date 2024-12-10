@@ -32,8 +32,8 @@
                             {% endfor %}
                         </select>
                         {% if request.user == movie.user %}
-                            <a href="#" class="btn btn-secondary btn-edit-movie">Edit</a>
-                            <a href="#" class="btn btn-danger btn-delete-movie">Delete</a>
+                            <a href="{% url 'movie-edit' movie.id %}" class="btn btn-secondary btn-edit-movie">Edit</a>
+                            <a href="{% url 'movie-delete' movie.id %}" class="btn btn-danger btn-delete-movie">Delete</a>
                         {% endif %}
                     </div>
                 </form>
@@ -49,6 +49,11 @@
                     <h5><strong>{{ movie.title }}</strong></h5>
                     <a href="{% url 'director-details' movie.director.id %}"
                               class="text-primary text-decoration-underline">{{ movie.director.get_full_name }}</a>
+                    {% if movie.genre_choices != 'Other genres' %}
+                                    <h6>Genre: {{ movie.genre_choices }}</h6>
+                                {% else %}
+                                    <h6>Genre: Not specified</h6>
+                    {% endif %}
                     <p class="card-text mt-3 text-center">{{ movie.description }}</p>
                 </div>
                 <div class="col-md-4 d-flex justify-content-center align-items-center order-md-2">

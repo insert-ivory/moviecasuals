@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Movie</title>
+    {% include 'common/layout.html' %}
+    <link rel="stylesheet" href="{% static 'css/delete_movie.css' %}">
+</head>
+<body>
+{% include 'common/nav.html' %}
+    <div class="container mt-5" style="margin-bottom: 105px;">
+        <div class="card" style="background-color: #011E2D; color: white; border: 2px solid white;">
+            <div class="card-body text-center">
+                <h4 class="card-title">Delete your Movie</h4>
+                <p class="card-text">This will delete your movie. Do you want to continue? ({{ movie.title }})?</p>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger delete-movie-btn">Delete</button>
+                    <a href="{% url 'movie-details' movie.id %}" class="btn btn-secondary back-delete-movie-btn">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% include 'common/footer.html' %}
+</body>
+</html>

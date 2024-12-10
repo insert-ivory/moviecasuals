@@ -47,6 +47,32 @@ class CreateMovieForm(BaseMovieForm):
             movie.save()
         return movie
 
+class EditMovieForm(BaseMovieForm):
+    class Meta(BaseMovieForm.Meta):
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Write the title of the movie'
+            }),
+            'description': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 8,
+                'placeholder': 'Description should not exceed 2000 characters.'
+            }),
+
+            'picture_url': forms.URLInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter the picture URL of the movie'
+            }),
+
+            'genre_choices': forms.Select(attrs={
+                'class': 'form-select'
+            }),
+            'director': forms.Select(attrs={
+                'class': 'form-select'
+            }),
+        }
+
 
 class BaseCommentForm(forms.ModelForm):
     class Meta:
