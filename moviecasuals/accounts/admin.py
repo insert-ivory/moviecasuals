@@ -15,11 +15,11 @@ class MovieUserModelAdmin(admin.ModelAdmin):
         'username', 'email', 'first_name', 'last_name', 'picture_url', 'is_staff', 'is_active', 'is_superuser',
         'groups', 'get_roles'
     )
-    readonly_fields = ('username', 'get_roles',)  # Make username and roles readonly by default
+    readonly_fields = ('username', 'get_roles',)
     actions = ['deactivate_users']
 
     def mark_as_staff(self, request, queryset):
-        # Restrict the ability to mark users as staff for redactors
+
         if not request.user.is_superuser:
             raise PermissionDenied("You do not have permission to mark users as staff.")
         queryset.update(is_staff=True)
@@ -28,9 +28,9 @@ class MovieUserModelAdmin(admin.ModelAdmin):
     mark_as_staff.short_description = "Mark selected users as staff"
 
     def deactivate_users(self, request, queryset):
-        # Ensure that the redactor cannot deactivate a superuser
+
         if not request.user.is_superuser:
-            queryset = queryset.exclude(is_superuser=True)  # Exclude superusers
+            queryset = queryset.exclude(is_superuser=True)
         queryset.update(is_active=False)
         self.message_user(request, "Selected users have been deactivated.")
 
@@ -44,8 +44,8 @@ class MovieUserModelAdmin(admin.ModelAdmin):
         readonly_fields = list(self.readonly_fields)
 
         if request.user.is_staff and not request.user.is_superuser:
-            # For redactors, make 'is_staff', 'is_superuser', and 'groups' read-only
-            readonly_fields += ['is_staff', 'is_superuser', 'groups']  # Add these fields to readonly for redactors
+
+            readonly_fields += ['is_staff', 'is_superuser', 'groups']
 
         return readonly_fields
 
@@ -61,10 +61,10 @@ class MovieUserModelAdmin(admin.ModelAdmin):
         """
         perms = super().get_model_perms(request)
         if request.user.is_staff:
-            perms['view'] = True  # Allow viewing for staff
-            perms['change'] = True  # Allow editing for staff
-            perms['delete'] = True  # Allow deletion for staff
-            perms['add'] = True  # Allow adding normal users only
+            perms['view'] = True
+            perms['change'] = True
+            perms['delete'] = True
+            perms['add'] = True
         return perms
 
     def get_queryset(self, request):
@@ -74,9 +74,9 @@ class MovieUserModelAdmin(admin.ModelAdmin):
         """
         queryset = super().get_queryset(request)
 
-        # If the user is a staff member (but not a superuser), exclude other staff members and superusers
+
         if request.user.is_staff and not request.user.is_superuser:
-            queryset = queryset.exclude(is_staff=True)  # Exclude other staff members from being editable/deletable
+            queryset = queryset.exclude(is_staff=True)
 
         return queryset
 
@@ -85,6 +85,6 @@ class MovieUserModelAdmin(admin.ModelAdmin):
         Restrict delete permissions. Prevent staff from deleting superusers or other staff members.
         """
         if obj is not None and (obj.is_staff or obj.is_superuser) and not request.user.is_superuser:
-            # If the user is staff and trying to delete a staff member or superuser, deny permission
+
             return False
         return super().has_delete_permission(request, obj)

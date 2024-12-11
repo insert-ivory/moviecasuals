@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const movieId = rating.getAttribute('data-movie-id');
         const stars = rating.querySelectorAll('.rating-star');
 
-        // Retrieve the user's rating (sent from the backend in the response)
+        // Retrieves the user's rating (sent from the backend in the response)
         const userRating = parseInt(rating.getAttribute('data-user-rating'), 10);
 
         // Highlight stars based on the user's rating
@@ -37,10 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         averageRatingElement.textContent = data.new_average_rating;
                     }
 
-                    // Update stars based on the new rating
                     updateStars(stars, ratingValue);
 
-                    // Update the data-user-rating attribute
                     rating.setAttribute('data-user-rating', ratingValue);
                 })
                 .catch(error => {
@@ -58,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 star.classList.remove('text-muted');
             } else {
                 star.classList.remove('text-warning');
-                star.classList.add('text-muted');   // Make the star gray
+                star.classList.add('text-muted');
             }
         });
     }

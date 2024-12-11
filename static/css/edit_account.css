@@ -37,11 +37,11 @@
 
 .form-buttons {
     display: flex;
-    justify-content: center; /* Centers the buttons horizontally */
-    gap: 10px; /* Adds a small gap between the buttons */
-    margin-top: 20px; /* Adds some space above the buttons */
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
 }
 
 .btn {
-    width: auto; /* Ensure the buttons do not stretch */
+    width: auto;
 }

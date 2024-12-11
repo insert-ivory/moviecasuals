@@ -6,7 +6,6 @@
     background-color: #011E2D;
 }
 
-/* override bootstrap to add border */
 .card .card-header {
     border-bottom: 2px solid white !important;
     padding-bottom: 15px;
@@ -26,68 +25,63 @@
 
 }
 
-
-/* Login button */
 .custom-button {
     background-color: #01B0EE;
     color: white;
     border-radius: 25px;
-    padding: 12px 20px; /* Padding inside the button */
+    padding: 12px 20px;
     font-size: 16px;
-    border: none; /* Remove default border */
-    transition: background-color 0.3s ease; /* Smooth background color transition */
+    border: none;
+    transition: background-color 0.3s ease;
 }
 
 .custom-button:hover {
     background-color: #45a049;
     outline: none;
     border:none;
-    box-shadow: none; /* Remove any shadow effect that might appear */
+    box-shadow: none;
 }
 
-/*  Register button */
 .btn-outline-secondary {
     background-color: #FDFA89;
     color: white;
     border-radius: 25px;
-    padding: 12px 20px; /* Padding inside the button */
+    padding: 12px 20px;
     font-size: 16px;
-    border: none; /* Remove default border */
-    transition: background-color 0.3s ease; /* Smooth background color transition */
+    border: none;
+    transition: background-color 0.3s ease;
 }
 
 .btn-outline-secondary:hover {
     background-color: #45a049;
 }
-/* Removing default black line */
+
 .card-header {
-    border-bottom: none; /* Removes the default border between header and body */
-    padding-bottom: 0; /* Removes any extra padding */
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 .card-body {
-    padding-top: 0; /* Removes any top padding */
-    margin-top: 0; /* Removes any top margin */
+    padding-top: 0;
+    margin-top: 0;
 }
 
-/* Style for the error message */
 .alert {
     margin-top: 20px;
     background-color: #f8d7da;
     color: #721c24;
     padding: 5px;
     margin-bottom: 15px;
-    border: 1px solid #f5c6cb; /* Light red border for the alert */
-    border-radius: 5px; /* Optional: Rounded corners for the alert box */
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
     font-family: 'Arial', sans-serif;
     font-size: 16px;
     font-weight: bold;
 
     display: flex;
-    justify-content: center; /* Horizontally center the text */
-    align-items: center; /* Vertically center the text */
-    text-align: center; /* Center the text inside the alert */
-
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 
 
 }

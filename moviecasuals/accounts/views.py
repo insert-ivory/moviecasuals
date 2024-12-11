@@ -19,7 +19,7 @@ class MovieUserLoginView(LoginView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            # Redirect authenticated users to the homepage or another appropriate page
+
             return redirect('homepage')
         return super().dispatch(request, *args, **kwargs)
 

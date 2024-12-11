@@ -10,7 +10,7 @@
 .card-header{
     border-bottom: 2px solid white;
 }
-/* Style for Confirm button */
+
 .btn-danger {
     background-color: #01B0EE;
     color: white;
@@ -25,7 +25,6 @@
     border-color: #bd2130;
 }
 
-/* Style for Cancel button */
 .btn-secondary {
     background-color: #FDFA89;
     color: white;
