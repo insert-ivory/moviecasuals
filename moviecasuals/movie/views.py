@@ -3,11 +3,14 @@ from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from moviecasuals.accounts.models import MovieUserModel
 from moviecasuals.mixins import AccessControlMixin
 from moviecasuals.movie.forms import CreateMovieForm, EditMovieForm
-from moviecasuals.movie.models import Movie, MovieUserChoice
+from moviecasuals.movie.models import Movie, MovieUserChoice, Rating
+from moviecasuals.movie.serializers import MovieSerializer
 from moviecasuals.movie_choices import MovieUserOptions
 
 
@@ -28,12 +31,24 @@ class CreateMovieView(CreateView):
 
 class MovieByGenreView(ListView):
     template_name = 'movie/movies_by_genre.html'
+    model = Movie
     context_object_name = 'movies'
 
     def get_queryset(self):
         genre_choices = self.kwargs['genre_choices']
         return Movie.objects.filter(genre_choices=genre_choices)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        if self.request.user.is_authenticated:
+            user_ratings = Rating.objects.filter(user=self.request.user)
+            user_ratings_dict = {rating.movie.id: rating.rating for rating in user_ratings}
+            context['user_ratings'] = user_ratings_dict
+        else:
+            context['user_ratings'] = {}
+
+        return context
 
 class MovieDetailsView(DetailView):
     template_name = 'movie/movie_details.html'
@@ -71,20 +86,6 @@ class UpdateMovieOptionView(LoginRequiredMixin, View):
         return redirect('homepage')
 
 
-class YourMovieListView(LoginRequiredMixin, DetailView):
-    model = MovieUserModel
-    pk_url_kwarg = 'id'
-    template_name = 'movie/your_movie_options.html'
-    context_object_name = 'user'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        user = self.request.user
-
-        context['status_options'] = MovieUserOptions.choices
-
-        return context
 
 
 class EditMovieView(LoginRequiredMixin, AccessControlMixin, UpdateView):
@@ -102,3 +103,13 @@ class DeleteMovieView(LoginRequiredMixin, AccessControlMixin, DeleteView):
     model = Movie
     pk_url_kwarg = 'id'
     success_url = reverse_lazy('homepage')
+
+
+class MovieApiView(APIView):
+
+    def get(self, request):
+        movies = Movie.objects.all()
+        serializer = MovieSerializer(movies, many=True)
+        return Response(serializer.data)
+
+

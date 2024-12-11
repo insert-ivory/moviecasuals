@@ -10,4 +10,6 @@ urlpatterns = [
     path('<int:id>/edit-movie/', views.EditMovieView.as_view(), name='movie-edit'),
     path('<int:id>/delete-movie/', views.DeleteMovieView.as_view(), name='movie-delete'),
 
+] + [
+    path('api/', views.MovieApiView.as_view(), name='movie-api')
 ]
