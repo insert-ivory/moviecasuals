@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 from django.urls import reverse_lazy
@@ -30,7 +30,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     "moviecasuals.director.apps.DirectorConfig",
     "moviecasuals.movie.apps.MovieConfig",
     "moviecasuals.accounts.apps.AccountsConfig",
-    "moviecasuals.common.apps.CommonConfig"
+    "moviecasuals.common.apps.CommonConfig",
+    "rest_framework"
 
 ]
 
@@ -132,9 +133,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
+
 
 MEDIA_URL = '/media/'
 
@@ -148,5 +152,15 @@ LOGOUT_REDIRECT_URL = reverse_lazy('homepage')
 
 
 AUTH_USER_MODEL = "accounts.MovieUserModel"
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+            'rest_framework.renderers.JSONRenderer',
+            'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+}
 
 
