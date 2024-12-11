@@ -37,6 +37,12 @@ class MovieUserModel(AbstractBaseUser, PermissionsMixin):
         default=False,
     )
 
+    picture_url = models.URLField(
+        blank=True,
+        null=True,
+    )
+
+
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = ["email"]
 
