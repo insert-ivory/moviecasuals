@@ -31,46 +31,43 @@ cd moviecasuals
 Create a virtual environment to isolate project dependencies:
 
 bash
-Copy code
-python -m venv venv
+Copy code:
+## python -m venv venv
+
+
 Activate the virtual environment:
 
 On Windows:
 
-bash
-Copy code
-.\venv\Scripts\activate
+
+## .\venv\Scripts\activate
 On macOS/Linux:
 
-bash
-Copy code
-source venv/bin/activate
+
+## source venv/bin/activate
 
 3. Install Project Dependencies
 Install the required packages using pip:
 
-bash
-Copy code
-pip install -r requirements.txt
+
+## pip install -r requirements.txt
 4. Set Up Environment Variables
 Create a .env file in the root of the project directory and add the following environment variables:
 
-ini
-Copy code
-SECRET_KEY=your_secret_key
-DEBUG=True
-DB_NAME=your_database_name
-DB_USER=your_database_user
-DB_PASSWORD=your_database_password
-DB_HOST=your_database_host
-DB_PORT=your_database_port
+
+## SECRET_KEY=your_secret_key
+## DEBUG=True
+## DB_NAME=your_database_name
+## DB_USER=your_database_user
+## DB_PASSWORD=your_database_password
+## DB_HOST=your_database_host
+## DB_PORT=your_database_port
 5. Prepare the Database
 Run the following commands to set up the database:
 
-bash
-Copy code
-python manage.py makemigrations
-python manage.py migrate
+
+## python manage.py makemigrations
+## python manage.py migrate
 6. Create an Admin User
 To access the Django admin panel, create a staff account:
 
@@ -80,9 +77,8 @@ python manage.py createsuperuser
 7. Run the Development Server
 Start the local development server:
 
-bash
-Copy code
-python manage.py runserver
+
+## python manage.py runserver
 Visit http://127.0.0.1:8000/ in your browser to view the application.
 
 ---
