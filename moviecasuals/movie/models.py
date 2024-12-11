@@ -21,6 +21,7 @@ class Movie(models.Model):
         blank=False,
         null=False,
         on_delete=models.CASCADE,
+        related_name='movies',
     )
 
     picture_url = models.URLField(
