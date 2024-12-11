@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render, redirect
@@ -15,8 +16,17 @@ class MovieUserLoginView(LoginView):
     template_name = 'accounts/login.html'
     form_class = LoginForm
 
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            # Redirect authenticated users to the homepage or another appropriate page
+            return redirect('homepage')
+        return super().dispatch(request, *args, **kwargs)
+
     def post(self, request, *args, **kwargs):
         form = self.get_form()
+
+
 
         if form.is_valid():
             return super().post(request, *args, **kwargs)
@@ -34,9 +44,10 @@ class MovieUserLoginView(LoginView):
         return self.render_to_response(self.get_context_data(form=form))
 
 
-class MovieUserLogoutView(LogoutView, LoginRequiredMixin):
+class MovieUserLogoutView(LoginRequiredMixin, LogoutView):
     template_name = 'accounts/logout.html'
 
+@login_required
 def logout(request):
     return render(request, 'accounts/logout.html')
 
@@ -46,6 +57,11 @@ class MovieUserRegistrationView(CreateView):
     template_name = 'accounts/register.html'
     success_url = reverse_lazy('login')
 
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('homepage')
+        return super().dispatch(request, *args, **kwargs)
+
 class MovieUserDetailsView(DetailView):
     model = MovieUserModel
     template_name = 'accounts/account_details.html'
@@ -53,7 +69,7 @@ class MovieUserDetailsView(DetailView):
     context_object_name = 'movie_user'
 
 
-class MovieUserEditAccountView(LoginRequiredMixin, AccessControlMixin ,UpdateView):
+class MovieUserEditAccountView(LoginRequiredMixin, AccessControlMixin, UpdateView):
     template_name = 'accounts/edit_account.html'
     pk_url_kwarg = 'id'
     model = MovieUserModel
@@ -81,7 +97,7 @@ class MovieUserDeleteAccountView(DeleteView):
     def get(self, request, *args, **kwargs):
         obj = self.get_object()
         if not (obj == request.user or request.user.is_superuser or request.user.is_staff):
-            messages.error(request, "You do not have permission to perform this action.")
+            messages.error(request, "")
             return redirect('access-control')
         return super().get(request, *args, **kwargs)
 
