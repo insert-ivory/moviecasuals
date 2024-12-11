@@ -68,12 +68,11 @@ Run the following commands to set up the database:
 
 ## python manage.py makemigrations
 ## python manage.py migrate
-6. Create an Admin User
+6. Create an Admin User.
 To access the Django admin panel, create a staff account:
 
-bash
-Copy code
-python manage.py createsuperuser
+
+## python manage.py createsuperuser
 7. Run the Development Server
 Start the local development server:
 
@@ -99,8 +98,10 @@ Each role is carefully defined to provide the appropriate level of access, ensur
 Staff: To access the admin panel make sure to be registered as staff before superuser!
 
 ##  Technical Stack
-Backend: Django 5.1.3, Django REST Framework
+Backend: Django 5.1.3, Django REST Framework 
+
 Database: PostgreSQL
+
 Frontend: HTML/CSS (Django templates), JavaScript, Bootstrap
 
 
