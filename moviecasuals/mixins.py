@@ -20,10 +20,14 @@ class AccessControlMixin:
         if user.is_staff:
             # Check if the user is a redactor or admin
             if 'Content Approver' in [group.name for group in user.groups.all()]:
-                # Redactors can only access movie-related objects
+                # Redactors (Content Approvers) can access movie-related objects
                 if user_attribute == 'movie' or user_attribute == 'director':
                     return True
-                return False  # Redactors can't access accounts or comments
+                elif user_attribute == 'comment':
+                    # Redactors can only access their own comments
+                    if obj.user == user:
+                        return True
+                    return False  # Redactors can't access other people's comments
 
             if 'Admins' in [group.name for group in user.groups.all()]:
                 # Admins can access everything
@@ -56,6 +60,7 @@ class AccessControlMixin:
             return redirect('access-control')
 
         return super().post(request, *args, **kwargs)
+
 
 
 
