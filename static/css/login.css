@@ -1,4 +1,6 @@
-
+.container {
+    margin-bottom: 105px;
+}
 
 .card-body {
     background-color: #011E2D;
