@@ -93,7 +93,7 @@ Admin: Elevated permissions for managing entities such as movies, directors, com
 Content Approver: A specialized role focused on reviewing and approving movies and directors before they are publicly listed, ensuring that only verified content is featured.
 
 Superuser: Full administrative rights across the platform, granting access to all settings, user management, and system configuration. Only the superuser can perform critical tasks like managing the database and system settings.
-Each role is carefully defined to provide the appropriate level of access, ensuring efficient delegation of tasks without compromising security.
+Each role is carefully defined to provide the appropriate level of access, ensuring efficient delegation of tasks without compromising security.(!!Make sure when creating a superuser to make him also a staff for accessing the admin pannel!!!)
 
 Staff: To access the admin panel make sure to be registered as staff before superuser!
 
