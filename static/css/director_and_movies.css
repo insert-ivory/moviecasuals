@@ -1,0 +1,44 @@
+.container {
+    margin-bottom: 200px;
+}
+
+.list-group-item {
+    background-color: #011E2D;
+    border: 2px solid white;
+    color:white;
+}
+h1 {
+    background-color: #011E2D;
+    color:white;
+}
+h3 {
+    border-bottom: 2px solid white;
+}
+strong {
+    border-bottom: 2px solid white;
+}
+
+.text-muted {
+    font-family: 'Arial', sans-serif;
+    color:white !important;
+}
+
+.custom-button {
+    background-color: #01B0EE;
+    color: white;
+    border-radius: 25px;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.custom-button:hover {
+    background-color: #FDFA89;
+    color: white;
+    border-radius: 25px;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    transition: background-color 0.3s ease;
+}

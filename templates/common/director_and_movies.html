@@ -1,10 +1,46 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Directors and Their Movies</title>
+    {% include 'common/layout.html' %}
+    <link rel="stylesheet" href="{% static 'css/director_and_movies.css' %}">
 </head>
 <body>
-$END$
+
+<div class="container my-5">
+     <div class="d-flex justify-content-center mb-4">
+        <a href="{% url 'homepage' %}" class="btn btn-primary custom-button">Back to the Main Page</a>
+    </div>
+    <h1 class="text-center mb-4">Explore Directors and Their Movies</h1>
+
+    
+
+    <div>
+        {% for director in directors %}
+            <div class="mb-5">
+                <ul class="list-group">
+                    {% for movie in director.movies %}
+                        <li class="list-group-item">
+                            <div class="d-flex flex-column">
+                                <h3>{{ director.name }}</h3>
+                                <strong>{{ movie.title }}</strong><br> 
+                                <span class="text-muted">Description: {{ movie.description }}</span> 
+                            </div>
+                        </li>
+                    {% empty %}
+                        <li class="list-group-item text-muted">No movies available for this director.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% include 'common/footer.html' %}
+
 </body>
 </html>
+
